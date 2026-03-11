@@ -11,9 +11,9 @@ export const testimonials: Testimonial[] = [
   {
     id: 1,
     quote: "Zirka transformed our entire marketing approach. We went from scattered efforts to a cohesive strategy that actually drives leads. Our revenue is up 147% in six months and the team feels like an extension of our own.",
-    name: 'Sarah Chen',
+    name: 'Anonymous',
     title: 'CEO',
-    company: 'Meridian Dental Group',
+    company: 'Calgary Dental Group',
     rating: 5,
   },
   {

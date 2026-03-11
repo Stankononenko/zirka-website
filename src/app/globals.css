@@ -403,6 +403,7 @@ a {
   .results-grid { grid-template-columns: repeat(3, 1fr) !important; }
   .blog-grid { grid-template-columns: repeat(3, 1fr) !important; }
   .footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1.2fr !important; }
+  .hero-grid { grid-template-columns: 1fr 1fr !important; }
 }
 @media (min-width: 640px) {
   .quote-services-grid { grid-template-columns: repeat(3, 1fr) !important; }

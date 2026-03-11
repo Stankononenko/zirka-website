@@ -113,7 +113,7 @@ export default function Home() {
         <div className="floating-shape floating-shape-3" />
         <div className="floating-shape floating-shape-4" />
 
-        <div className="container-main" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 48, position: 'relative', zIndex: 1, width: '100%' }}>
+        <div className="hero-grid container-main" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 48, position: 'relative', zIndex: 1, width: '100%', alignItems: 'center' }}>
           <div style={{ maxWidth: 720 }}>
             {/* Badge */}
             <div style={{
@@ -178,6 +178,27 @@ export default function Home() {
                 ))}
               </div>
               <p style={{ color: 'var(--text-muted)', fontSize: 13 }}>Trusted by 36+ Calgary Businesses</p>
+            </div>
+          </div>
+
+          {/* Hero Image */}
+          <div style={{ position: 'relative', width: '100%', maxWidth: 520, margin: '0 auto' }} className="hero-image-wrapper">
+            <div style={{
+              width: '100%',
+              aspectRatio: '4/3',
+              borderRadius: 16,
+              overflow: 'hidden',
+              position: 'relative',
+              border: '1px solid rgba(59, 130, 246, 0.15)',
+              boxShadow: '0 8px 40px rgba(59, 130, 246, 0.12)',
+            }}>
+              <Image
+                src="/images/hero-main.jpg"
+                alt="Calgary growth consulting hero"
+                fill
+                style={{ objectFit: 'cover' }}
+                priority
+              />
             </div>
           </div>
         </div>
@@ -360,14 +381,15 @@ export default function Home() {
             }} className="case-study-card">
               <div style={{
                 aspectRatio: '16/9',
-                backgroundColor: 'var(--bg-elevated)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--text-muted)',
-                fontSize: 14,
-              }} role="img" aria-label="Case study: Meridian Dental Group revenue growth dashboard">
-                Case Study Image
+                position: 'relative',
+                overflow: 'hidden',
+              }}>
+                <Image
+                  src="/images/cs-dental-hero.jpg"
+                  alt="Calgary dental clinic growth case study"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
               </div>
               <div style={{ padding: '32px' }}>
                 <span style={{

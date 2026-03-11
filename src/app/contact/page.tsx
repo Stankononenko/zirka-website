@@ -43,8 +43,25 @@ export default function ContactPage() {
 
   const totalSteps = flow === 'audit' ? 4 : flow === 'quote' ? 5 : flow === 'inquiry' ? 2 : 1;
 
-  const handleSubmit = () => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async () => {
     if (honeypot) return; // spam bot
+    setSubmitting(true);
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name, email, company, phone, flow,
+          companySize, challenge, selectedServices,
+          timeline, budget, description, message, caslConsent,
+        }),
+      });
+    } catch (err) {
+      console.error('Form submission error:', err);
+    }
+    setSubmitting(false);
     setSubmitted(true);
   };
 

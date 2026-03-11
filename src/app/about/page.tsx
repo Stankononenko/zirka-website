@@ -110,12 +110,17 @@ export default function AboutPage() {
             }}>
               <div style={{
                 width: 96, height: 96, borderRadius: '50%',
-                background: 'linear-gradient(135deg, var(--accent), var(--accent-cyan))',
+                overflow: 'hidden',
                 margin: '0 auto 20px',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: 'var(--font-heading)', fontSize: 36, color: '#F8FAFC', fontWeight: 700,
-              }} role="img" aria-label="Stan Kononenko, Founder & Growth Partner at Zirka Solutions">
-                SK
+                border: '2px solid rgba(59, 130, 246, 0.3)',
+                position: 'relative',
+              }}>
+                <Image
+                  src="/images/stan-kononenko.jpg"
+                  alt="Stan Kononenko, Founder of Zirka Solutions"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
               </div>
               <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 22, color: 'var(--text-heading)', marginBottom: 6 }}>
                 Stan Kononenko

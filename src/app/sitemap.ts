@@ -1,5 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { services } from '@/data/services';
+import { blogPosts } from '@/data/blogPosts';
+import { caseStudies } from '@/data/caseStudies';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://zirka.solutions';
@@ -20,5 +22,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...servicePages];
+  const blogPages = blogPosts.map((p) => ({
+    url: `${baseUrl}/blog/${p.slug}`,
+    lastModified: new Date(p.date),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
+
+  const caseStudyPages = caseStudies.map((cs) => ({
+    url: `${baseUrl}/results/${cs.id}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...servicePages, ...blogPages, ...caseStudyPages];
 }
