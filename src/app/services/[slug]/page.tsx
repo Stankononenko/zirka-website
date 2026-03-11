@@ -33,14 +33,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const service = getServiceBySlug(slug);
   if (!service) return {};
   return {
-    title: service.metaTitle,
+    title: `${service.metaTitle} | Zirka Solutions`,
     description: service.metaDescription,
     alternates: { canonical: `https://zirka.solutions/services/${slug}` },
     openGraph: {
-      title: service.metaTitle,
+      title: `${service.metaTitle} | Zirka Solutions`,
       description: service.metaDescription,
       url: `https://zirka.solutions/services/${slug}`,
       type: 'website',
+      images: [{ url: '/images/zirka-og.jpg', width: 1200, height: 630, alt: `Calgary ${service.name} - Zirka Solutions` }],
     },
   };
 }
