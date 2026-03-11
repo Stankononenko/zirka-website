@@ -1,11 +1,48 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
-import { ArrowRight, MessageCircle, Camera, Search, Target, Bot, TrendingUp, Settings, Users, Code } from 'lucide-react';
+import { ArrowRight, MessageCircle, Camera, Search, Target, Bot, TrendingUp, Settings, Users, Code, MapPin, Snowflake, Network } from 'lucide-react';
 import { services } from '@/data/services';
 import ScrollReveal from '@/components/ScrollReveal';
 import StatCounter from '@/components/StatCounter';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
+import FAQAccordion from '@/components/FAQAccordion';
 import CTABanner from '@/components/CTABanner';
+
+const homepageFaqs = [
+  {
+    question: 'What makes Zirka different from a traditional marketing agency?',
+    answer: "We're not an agency — we're a Growth & Operations Partner. That means we don't just run your ads or post on social media. We look at your entire business: marketing, operations, team, and systems. Then we build an integrated growth plan where every piece works together. Most agencies optimize one channel. We optimize your whole business.",
+  },
+  {
+    question: 'How quickly can we get started?',
+    answer: 'Fast. After your free Growth Audit, we can have a custom strategy ready within 7 business days. Implementation typically starts in week 2. No 3-month onboarding processes or endless kickoff calls.',
+  },
+  {
+    question: 'Do you work with businesses outside Calgary?',
+    answer: 'Yes — we serve clients across Canada and the US remotely. Our core focus is Calgary businesses, but our services (especially AI automation, SEO, and consulting) work for any location.',
+  },
+  {
+    question: "What's included in the free Growth Audit?",
+    answer: "A 60-minute deep dive into your business. We review your current marketing, operations, team structure, and growth bottlenecks. You leave with a clear picture of your biggest opportunities and a prioritized action plan — whether you work with us or not.",
+  },
+  {
+    question: 'Do you require long-term contracts?',
+    answer: "No lock-in contracts. We work month-to-month on most services. We believe in earning your business every month, not trapping you in a contract.",
+  },
+  {
+    question: 'How do you measure success?',
+    answer: "Every engagement starts with defining clear KPIs — revenue, leads, cost per acquisition, operational efficiency metrics. We provide monthly reporting and are transparent about what's working and what isn't.",
+  },
+  {
+    question: 'Can you help a business that\'s just starting out?',
+    answer: 'Yes, though our sweet spot is businesses doing $500K–$10M in revenue that are ready to scale. Startups are welcome, but we\'re most effective when there\'s already a proven product or service.',
+  },
+  {
+    question: 'What does AI Automation actually look like for a small business?',
+    answer: "Practical examples: a voice agent that answers your phones 24/7 and books appointments, automated follow-up sequences for leads that don't close immediately, automated reporting that saves your team 5+ hours per week, or CRM integrations that eliminate manual data entry. We build these specifically for your business — not generic templates.",
+  },
+];
 
 const iconMap: Record<string, React.ElementType> = {
   MessageCircle, Camera, Search, Target, Bot, TrendingUp, Settings, Users, Code,
@@ -29,14 +66,12 @@ export default function Home() {
     "@type": "ProfessionalService",
     name: "Zirka Solutions",
     url: "https://zirka.solutions",
-    telephone: "+1-403-555-1234",
-    email: "hello@zirka.solutions",
+    telephone: "+1-587-973-1455",
+    email: "stan@zirkasolutions.com",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "123 Centre Street SW",
       addressLocality: "Calgary",
       addressRegion: "AB",
-      postalCode: "T2G 0B6",
       addressCountry: "CA",
     },
     geo: { "@type": "GeoCoordinates", latitude: 51.0447, longitude: -114.0719 },
@@ -51,7 +86,7 @@ export default function Home() {
       })),
     },
     sameAs: [
-      "https://instagram.com/zirkasolutions",
+      "https://www.instagram.com/zirka.solutions/",
       "https://linkedin.com/company/zirkasolutions",
       "https://facebook.com/zirkasolutions",
     ],
@@ -62,6 +97,8 @@ export default function Home() {
     "@type": "BreadcrumbList",
     itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://zirka.solutions" }],
   };
+
+  const clientNames = ['Restaurant Group', 'Dental Clinic', 'Real Estate Co.', 'Tech Startup', 'Fitness Studio'];
 
   return (
     <>
@@ -77,7 +114,7 @@ export default function Home() {
         <div className="floating-shape floating-shape-4" />
 
         <div className="container-main" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 48, position: 'relative', zIndex: 1, width: '100%' }}>
-          <div className="hero-content" style={{ maxWidth: 680 }}>
+          <div style={{ maxWidth: 720 }}>
             {/* Badge */}
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -95,12 +132,13 @@ export default function Home() {
 
             <h1 style={{
               fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(36px, 5vw, 56px)',
+              fontSize: 'clamp(40px, 6vw, 64px)',
               color: 'var(--text-heading)',
               marginBottom: 20,
-              lineHeight: 1.1,
+              lineHeight: 1.05,
+              fontWeight: 900,
             }}>
-              Scale Your Business Without the Growing Pains
+              <span className="gradient-text">Scale</span> Your Business Without the Growing Pains
             </h1>
 
             <p style={{
@@ -122,18 +160,24 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Client logos */}
+            {/* Client name pills */}
             <div>
-              <div style={{ display: 'flex', gap: 16, marginBottom: 12, flexWrap: 'wrap' }}>
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <div key={i} style={{
-                    width: 80, height: 32, borderRadius: 4,
-                    backgroundColor: 'rgba(148, 163, 184, 0.1)',
-                    border: '1px solid rgba(148, 163, 184, 0.1)',
-                  }} role="img" aria-label={`Client logo placeholder ${i + 1}`} />
+              <div style={{ display: 'flex', gap: 10, marginBottom: 12, flexWrap: 'wrap' }}>
+                {clientNames.map((name) => (
+                  <span key={name} style={{
+                    padding: '6px 14px',
+                    borderRadius: 20,
+                    backgroundColor: 'rgba(148, 163, 184, 0.08)',
+                    border: '1px solid rgba(148, 163, 184, 0.12)',
+                    color: 'var(--text-muted)',
+                    fontSize: 12,
+                    fontWeight: 500,
+                  }}>
+                    {name}
+                  </span>
                 ))}
               </div>
-              <p style={{ color: 'var(--text-muted)', fontSize: 13 }}>Trusted by 50+ Calgary Businesses</p>
+              <p style={{ color: 'var(--text-muted)', fontSize: 13 }}>Trusted by 36+ Calgary Businesses</p>
             </div>
           </div>
         </div>
@@ -150,13 +194,12 @@ export default function Home() {
           <div className="container-main">
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
+              gridTemplateColumns: 'repeat(1, 1fr)',
               gap: 32,
             }} className="stats-grid">
-              <StatCounter value="50+" label="Clients Served" />
+              <StatCounter value="36+" label="Clients Served" />
               <StatCounter value="9" label="Services, One Partner" />
-              <StatCounter value="4.9" label="★ Google Rating" />
-              <StatCounter value="100%" label="Calgary-Born & Operated" />
+              <StatCounter value="5+" label="Years Experience" />
             </div>
           </div>
         </section>
@@ -166,9 +209,9 @@ export default function Home() {
       <section className="section-spacing">
         <div className="container-main">
           <ScrollReveal>
-            <div style={{ textAlign: 'center', marginBottom: 56 }}>
+            <div style={{ textAlign: 'center', marginBottom: 48 }}>
               <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(28px, 4vw, 40px)', color: 'var(--text-heading)', marginBottom: 12 }}>
-                Everything You Need to Grow
+                Everything You Need to <span className="gradient-text">Grow</span>
               </h2>
               <p style={{ color: 'var(--text-muted)', fontSize: 17, maxWidth: 520, margin: '0 auto' }}>
                 Nine specialized services that work better together.
@@ -201,7 +244,7 @@ export default function Home() {
                         {service.shortDescription}
                       </p>
                       <span style={{ color: 'var(--accent)', fontSize: 14, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}>
-                        Learn more about {service.name} <ArrowRight size={14} />
+                        Learn more <ArrowRight size={14} />
                       </span>
                     </div>
                   </Link>
@@ -212,38 +255,46 @@ export default function Home() {
         </div>
       </section>
 
-      {/* === HOW IT WORKS === */}
+      {/* === CALGARY'S GROWTH PARTNER === */}
       <ScrollReveal>
         <section className="section-spacing" style={{ backgroundColor: 'var(--bg-card)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
           <div className="container-main">
-            <div style={{ textAlign: 'center', marginBottom: 56 }}>
+            <div style={{ textAlign: 'center', marginBottom: 48 }}>
               <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(28px, 4vw, 40px)', color: 'var(--text-heading)', marginBottom: 12 }}>
-                How It Works
+                Built for <span className="gradient-text">Calgary</span>. Proven in Calgary.
               </h2>
+              <p style={{ color: 'var(--text-muted)', fontSize: 17, maxWidth: 600, margin: '0 auto', lineHeight: 1.7 }}>
+                We don&apos;t work with businesses in 50 cities. We go deep in one — Calgary. That means we know your market, your competition, and what actually moves the needle here.
+              </p>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 40, maxWidth: 900, margin: '0 auto' }} className="steps-grid">
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 20, maxWidth: 900, margin: '0 auto' }} className="steps-grid">
               {[
-                { num: '1', title: 'Free Growth Audit', desc: 'We analyze your business, identify bottlenecks, and map your biggest opportunities.' },
-                { num: '2', title: 'Custom Strategy', desc: 'You get a tailored growth roadmap with clear priorities, timelines, and expected outcomes.' },
-                { num: '3', title: 'Measurable Results', desc: 'We execute, measure, optimize, and scale — reporting real metrics every step.' },
-              ].map((step, i) => (
-                <ScrollReveal key={i} delay={i * 0.15}>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', position: 'relative' }}>
+                { Icon: MapPin, title: 'NW, SW, SE, NE', desc: 'We cover all Calgary quadrants' },
+                { Icon: Snowflake, title: 'Chinook Effect', desc: "We understand Calgary's unique seasonal business cycles" },
+                { Icon: Network, title: 'Local Network', desc: 'Direct connections to Calgary Chamber of Commerce ecosystem' },
+              ].map((item, i) => (
+                <ScrollReveal key={i} delay={i * 0.12}>
+                  <div style={{
+                    backgroundColor: 'var(--bg-primary)',
+                    border: '1px solid rgba(59, 130, 246, 0.10)',
+                    borderRadius: 12,
+                    padding: 28,
+                    textAlign: 'center',
+                  }}>
                     <div style={{
-                      width: 56, height: 56, borderRadius: '50%',
-                      backgroundColor: 'var(--accent)',
+                      width: 52, height: 52, borderRadius: 12,
+                      backgroundColor: 'var(--bg-elevated)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 700,
-                      color: '#F8FAFC', marginBottom: 16,
+                      margin: '0 auto 16px',
                     }}>
-                      {step.num}
+                      <item.Icon size={24} color="var(--accent)" />
                     </div>
-                    <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 20, color: 'var(--text-heading)', marginBottom: 8 }}>
-                      {step.title}
+                    <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 20, color: 'var(--text-heading)', marginBottom: 6 }}>
+                      {item.title}
                     </h3>
-                    <p style={{ color: 'var(--text-muted)', fontSize: 15, maxWidth: 280, lineHeight: 1.6 }}>
-                      {step.desc}
+                    <p style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.6, margin: 0 }}>
+                      {item.desc}
                     </p>
                   </div>
                 </ScrollReveal>
@@ -253,13 +304,55 @@ export default function Home() {
         </section>
       </ScrollReveal>
 
-      {/* === FEATURED CASE STUDY === */}
+      {/* === HOW IT WORKS === */}
       <section className="section-spacing">
         <div className="container-main">
           <ScrollReveal>
+            <div style={{ textAlign: 'center', marginBottom: 48 }}>
+              <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(28px, 4vw, 40px)', color: 'var(--text-heading)', marginBottom: 12 }}>
+                How It Works
+              </h2>
+            </div>
+          </ScrollReveal>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 40, maxWidth: 900, margin: '0 auto' }} className="steps-grid">
+            {[
+              { num: '1', title: 'Free Growth Audit', desc: 'We analyze your business, identify bottlenecks, and map your biggest opportunities.' },
+              { num: '2', title: 'Custom Strategy', desc: 'You get a tailored growth roadmap with clear priorities, timelines, and expected outcomes.' },
+              { num: '3', title: 'Measurable Results', desc: 'We execute, measure, optimize, and scale — reporting real metrics every step.' },
+            ].map((step, i) => (
+              <ScrollReveal key={i} delay={i * 0.15}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', position: 'relative' }}>
+                  <div style={{
+                    width: 56, height: 56, borderRadius: '50%',
+                    backgroundColor: 'var(--accent)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontFamily: 'var(--font-heading)', fontSize: 22, fontWeight: 700,
+                    color: '#F8FAFC', marginBottom: 16,
+                    boxShadow: '0 0 24px rgba(59, 130, 246, 0.35)',
+                  }}>
+                    {step.num}
+                  </div>
+                  <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 20, color: 'var(--text-heading)', marginBottom: 8 }}>
+                    {step.title}
+                  </h3>
+                  <p style={{ color: 'var(--text-muted)', fontSize: 15, maxWidth: 280, lineHeight: 1.6 }}>
+                    {step.desc}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* === FEATURED CASE STUDY === */}
+      <section className="section-spacing" style={{ backgroundColor: 'var(--bg-card)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
+        <div className="container-main">
+          <ScrollReveal>
             <div style={{
-              backgroundColor: 'var(--bg-card)',
-              border: '1px solid var(--border-color)',
+              backgroundColor: 'var(--bg-primary)',
+              border: '1px solid rgba(59, 130, 246, 0.10)',
               borderRadius: 12,
               overflow: 'hidden',
               display: 'grid',
@@ -311,7 +404,7 @@ export default function Home() {
       </section>
 
       {/* === TESTIMONIALS === */}
-      <section className="section-spacing" style={{ backgroundColor: 'var(--bg-card)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
+      <section className="section-spacing">
         <div className="container-main">
           <ScrollReveal>
             <div style={{ textAlign: 'center', marginBottom: 48 }}>
@@ -325,6 +418,41 @@ export default function Home() {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* === FAQ SECTION === */}
+      <section className="section-spacing">
+        <div className="container-main" style={{ maxWidth: 720, margin: '0 auto' }}>
+          <ScrollReveal>
+            <div style={{ textAlign: 'center', marginBottom: 40 }}>
+              <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(28px, 4vw, 40px)', color: 'var(--text-heading)', marginBottom: 12 }}>
+                Frequently Asked Questions
+              </h2>
+              <p style={{ color: 'var(--text-muted)', fontSize: 16 }}>
+                Everything you need to know about working with Zirka
+              </p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={0.15}>
+            <FAQAccordion items={homepageFaqs} />
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* JSON-LD FAQ Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: homepageFaqs.map((f) => ({
+              "@type": "Question",
+              name: f.question,
+              acceptedAnswer: { "@type": "Answer", text: f.answer },
+            })),
+          }),
+        }}
+      />
 
       {/* === CTA BANNER === */}
       <CTABanner />

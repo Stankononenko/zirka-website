@@ -34,10 +34,13 @@ export default function ResultsPage() {
       <section style={{ paddingTop: 140, paddingBottom: 64 }}>
         <div className="container-main" style={{ maxWidth: 720 }}>
           <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(36px, 5vw, 52px)', color: 'var(--text-heading)', marginBottom: 16 }}>
-            Our Results
+            Client Success Stories
           </h1>
-          <p style={{ color: 'var(--text-muted)', fontSize: 20, lineHeight: 1.7 }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: 20, lineHeight: 1.7, marginBottom: 12 }}>
             Real businesses. Real numbers. Real growth.
+          </p>
+          <p style={{ color: 'var(--text-muted)', fontSize: 13, fontStyle: 'italic', opacity: 0.8 }}>
+            Client names are anonymized to protect privacy. All results are based on real engagements.
           </p>
         </div>
       </section>
@@ -112,13 +115,10 @@ export default function ResultsPage() {
                   <div style={{
                     height: 180,
                     backgroundColor: 'var(--bg-elevated)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'var(--text-muted)',
-                    fontSize: 14,
+                    overflow: 'hidden',
+                    position: 'relative',
                   }} role="img" aria-label={`${cs.client} case study image`}>
-                    {cs.client}
+                    <img src={cs.image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
                   <div style={{ padding: 24 }}>
                     <h2 style={{

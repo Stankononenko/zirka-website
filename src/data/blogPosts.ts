@@ -5,6 +5,7 @@ export interface BlogPost {
   category: string;
   date: string;
   readTime: string;
+  image: string;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -15,6 +16,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Marketing',
     date: '2026-02-28',
     readTime: '8 min read',
+    image: '/images/blog-seo.png',
   },
   {
     slug: 'ai-voice-agents-small-business',
@@ -23,6 +25,7 @@ export const blogPosts: BlogPost[] = [
     category: 'AI',
     date: '2026-02-21',
     readTime: '6 min read',
+    image: '/images/blog-ai-voice.png',
   },
   {
     slug: 'operations-scaling-mistakes',
@@ -31,6 +34,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Operations',
     date: '2026-02-14',
     readTime: '7 min read',
+    image: '/images/blog-growth.png',
   },
   {
     slug: 'social-media-roi-calgary',
@@ -39,6 +43,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Marketing',
     date: '2026-02-07',
     readTime: '5 min read',
+    image: '/images/blog-marketing.png',
   },
   {
     slug: 'fractional-coo-guide',
@@ -47,6 +52,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Growth',
     date: '2026-01-31',
     readTime: '9 min read',
+    image: '/images/blog-growth.png',
   },
   {
     slug: 'google-ads-calgary-tips',
@@ -55,6 +61,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Marketing',
     date: '2026-01-24',
     readTime: '6 min read',
+    image: '/images/blog-marketing.png',
   },
   {
     slug: 'website-conversion-optimization',
@@ -63,6 +70,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Growth',
     date: '2026-01-17',
     readTime: '7 min read',
+    image: '/images/blog-seo.png',
   },
   {
     slug: 'hiring-calgary-talent-2026',
@@ -71,6 +79,7 @@ export const blogPosts: BlogPost[] = [
     category: 'Calgary Business',
     date: '2026-01-10',
     readTime: '8 min read',
+    image: '/images/blog-ai-voice.png',
   },
 ];
 

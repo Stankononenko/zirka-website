@@ -40,13 +40,13 @@ export default function RootLayout({
     logo: "https://zirka.solutions/logo.png",
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+1-403-555-1234",
+      telephone: "+1-587-973-1455",
       contactType: "sales",
       areaServed: "Calgary",
       availableLanguage: "English",
     },
     sameAs: [
-      "https://instagram.com/zirkasolutions",
+      "https://www.instagram.com/zirka.solutions/",
       "https://linkedin.com/company/zirkasolutions",
       "https://facebook.com/zirkasolutions",
     ],

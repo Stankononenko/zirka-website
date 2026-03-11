@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -11,6 +11,7 @@ interface ScrollRevealProps {
 
 export default function ScrollReveal({ children, delay = 0, className, style }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -18,39 +19,49 @@ export default function ScrollReveal({ children, delay = 0, className, style }: 
 
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) {
-      el.style.opacity = '1';
-      el.style.transform = 'none';
+      setIsVisible(true);
       return;
     }
 
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
+    // Use IntersectionObserver for reliable reveal
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Add delay via setTimeout instead of GSAP
+          const timer = setTimeout(() => {
+            setIsVisible(true);
+          }, delay * 1000);
+          observer.disconnect();
+          return () => clearTimeout(timer);
+        }
+      },
+      { threshold: 0.1 }
+    );
 
-    import('gsap').then(({ gsap }) => {
-      import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
-        gsap.registerPlugin(ScrollTrigger);
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: 30 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            delay,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              once: true,
-            },
-          }
-        );
-      });
-    });
+    observer.observe(el);
+
+    // Fallback: if still not visible after 3 seconds, force show
+    const fallbackTimer = setTimeout(() => {
+      setIsVisible(true);
+    }, 3000 + delay * 1000);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallbackTimer);
+    };
   }, [delay]);
 
   return (
-    <div ref={ref} className={className} style={style}>
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        ...style,
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'none' : 'translateY(24px)',
+        transition: `opacity 0.6s ease ${delay}s, transform 0.6s ease ${delay}s`,
+      }}
+    >
       {children}
     </div>
   );

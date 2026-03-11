@@ -14,9 +14,9 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { label: 'Instagram', href: 'https://instagram.com', Icon: Instagram },
-    { label: 'LinkedIn', href: 'https://linkedin.com', Icon: Linkedin },
-    { label: 'Facebook', href: 'https://facebook.com', Icon: Facebook },
+    { label: 'Instagram', href: 'https://www.instagram.com/zirka.solutions/', Icon: Instagram },
+    { label: 'LinkedIn', href: 'https://linkedin.com/company/zirkasolutions', Icon: Linkedin },
+    { label: 'Facebook', href: 'https://facebook.com/zirkasolutions', Icon: Facebook },
   ];
 
   return (
@@ -111,16 +111,16 @@ export default function Footer() {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
               <li style={{ display: 'flex', gap: 10, alignItems: 'flex-start', color: 'var(--text-muted)', fontSize: 14 }}>
                 <MapPin size={16} style={{ flexShrink: 0, marginTop: 2 }} />
-                <span>123 Centre Street SW<br/>Calgary, AB T2G 0B6</span>
+                <span>Calgary, AB, Canada</span>
               </li>
               <li>
-                <a href="tel:+14035551234" className="footer-link" style={{ display: 'flex', gap: 10, alignItems: 'center', color: 'var(--text-muted)', fontSize: 14, transition: 'color 0.2s' }}>
-                  <Phone size={16} /> (403) 555-1234
+                <a href="tel:+15879731455" className="footer-link" style={{ display: 'flex', gap: 10, alignItems: 'center', color: 'var(--text-muted)', fontSize: 14, transition: 'color 0.2s' }}>
+                  <Phone size={16} /> +1 (587) 973-1455
                 </a>
               </li>
               <li>
-                <a href="mailto:hello@zirka.solutions" className="footer-link" style={{ display: 'flex', gap: 10, alignItems: 'center', color: 'var(--text-muted)', fontSize: 14, transition: 'color 0.2s' }}>
-                  <Mail size={16} /> hello@zirka.solutions
+                <a href="mailto:stan@zirkasolutions.com" className="footer-link" style={{ display: 'flex', gap: 10, alignItems: 'center', color: 'var(--text-muted)', fontSize: 14, transition: 'color 0.2s' }}>
+                  <Mail size={16} /> stan@zirkasolutions.com
                 </a>
               </li>
             </ul>

@@ -9,6 +9,7 @@ export interface CaseStudy {
   solution: string;
   result: string;
   serviceTags: string[];
+  image: string;
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -23,6 +24,7 @@ export const caseStudies: CaseStudy[] = [
     solution: 'We implemented a comprehensive strategy: SEO and Google Ads for patient acquisition, social media for brand building, operational streamlining, and AI voice agents for after-hours calls.',
     result: '147% revenue growth in 6 months, 340% increase in social engagement, and 38% more leads captured through AI automation.',
     serviceTags: ['SEO', 'Google Ads & Paid Media', 'Social Media Marketing', 'AI Automation & Voice Agents', 'Operations Optimization'],
+    image: '/images/cs-dental.png',
   },
   {
     id: 'peakview-properties',
@@ -35,6 +37,7 @@ export const caseStudies: CaseStudy[] = [
     solution: 'We built a high-converting website, launched targeted Google Ads, deployed AI voice agents for 24/7 call handling, and created a content strategy for SEO.',
     result: '3.2x increase in qualified leads, 24/7 lead capture, and a 4.2x return on marketing investment within the first quarter.',
     serviceTags: ['Web Development', 'Google Ads & Paid Media', 'AI Automation & Voice Agents', 'SEO'],
+    image: '/images/cs-realestate.png',
   },
   {
     id: 'alpine-tech',
@@ -47,6 +50,7 @@ export const caseStudies: CaseStudy[] = [
     solution: 'Comprehensive operations audit, process documentation, tech stack consolidation (12 tools to 5), and implementation of clear communication cadences.',
     result: '58% productivity increase, 35% reduction in operational costs, and significant improvement in employee satisfaction.',
     serviceTags: ['Operations Optimization', 'Business Growth Consulting', 'AI Automation & Voice Agents'],
+    image: '/images/cs-tech.png',
   },
   {
     id: 'rustic-table',
@@ -59,6 +63,7 @@ export const caseStudies: CaseStudy[] = [
     solution: 'Professional food photography and video production, consistent social media management across Instagram and TikTok, and targeted local campaigns.',
     result: '280% increase in social media-driven reservations, 185% engagement boost, and became a top-10 trending restaurant in Calgary on Instagram.',
     serviceTags: ['Photo & Video Production', 'Social Media Marketing', 'Google Ads & Paid Media'],
+    image: '/images/cs-restaurant.png',
   },
   {
     id: 'summit-retail',
@@ -71,6 +76,7 @@ export const caseStudies: CaseStudy[] = [
     solution: 'Complete website redesign with conversion-first architecture, performance optimization, SEO foundation, and ongoing paid media campaigns.',
     result: '195% conversion rate increase, sub-2-second load times, and 280% more form submissions within the first month.',
     serviceTags: ['Web Development', 'SEO', 'Google Ads & Paid Media'],
+    image: '/images/cs-retail.png',
   },
   {
     id: 'brightco-staffing',
@@ -83,6 +89,7 @@ export const caseStudies: CaseStudy[] = [
     solution: 'Activated our talent network, ran targeted outreach campaigns on LinkedIn, and implemented a 4-stage screening process tailored to their culture.',
     result: 'All 8 positions filled in 45 days, 94% retention at 12 months, and $340K saved compared to estimated cost of bad hires.',
     serviceTags: ['Recruiting & Staffing', 'Operations Optimization'],
+    image: '/images/cs-staffing.png',
   },
 ];
 

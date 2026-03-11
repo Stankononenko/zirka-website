@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import { ArrowRight, MessageCircle, Camera, Search, Target, Bot, TrendingUp, Settings, Users, Code } from 'lucide-react';
 import { services, getServiceBySlug, getRelatedServices } from '@/data/services';
@@ -9,6 +10,18 @@ import CTABanner from '@/components/CTABanner';
 
 const iconMap: Record<string, React.ElementType> = {
   MessageCircle, Camera, Search, Target, Bot, TrendingUp, Settings, Users, Code,
+};
+
+const heroImageMap: Record<string, string> = {
+  'social-media-marketing': '/images/svc-social-media.png',
+  'photo-video-production': '/images/svc-photo-video.png',
+  'seo': '/images/svc-seo.png',
+  'google-ads': '/images/svc-google-ads.png',
+  'ai-automation': '/images/svc-ai-automation.png',
+  'growth-consulting': '/images/svc-business-growth.png',
+  'operations-optimization': '/images/svc-operations.png',
+  'recruiting-staffing': '/images/svc-recruiting.png',
+  'web-development': '/images/svc-web-dev.png',
 };
 
 export async function generateStaticParams() {
@@ -38,6 +51,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   if (!service) return <div className="container-main section-spacing"><h1>Service Not Found</h1></div>;
 
   const related = getRelatedServices(service.relatedSlugs);
+  const heroImage = heroImageMap[slug];
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -80,7 +94,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       {/* Hero */}
-      <section style={{ paddingTop: 140, paddingBottom: 64, position: 'relative', overflow: 'hidden' }}>
+      <section style={{ paddingTop: 140, paddingBottom: 32, position: 'relative', overflow: 'hidden' }}>
         <div className="gradient-mesh" style={{ opacity: 0.5 }} />
         <div className="container-main" style={{ position: 'relative', zIndex: 1, maxWidth: 720 }}>
           <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(36px, 5vw, 52px)', color: 'var(--text-heading)', marginBottom: 16 }}>
@@ -95,6 +109,17 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           </div>
         </div>
       </section>
+
+      {/* Hero Image */}
+      {heroImage && (
+        <section style={{ paddingBottom: 0 }}>
+          <div className="container-main">
+            <div style={{ width: '100%', height: 320, borderRadius: 12, overflow: 'hidden', position: 'relative' }}>
+              <Image src={heroImage} alt={`${service.name} — Zirka Solutions`} fill style={{ objectFit: 'cover' }} priority />
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Problem / Solution */}
       <section className="section-spacing">

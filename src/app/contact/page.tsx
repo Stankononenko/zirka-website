@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { MapPin, Phone, Mail, Instagram, Linkedin, Facebook, Lock, Star, Clock, CheckCircle2, FileSearch, FileText, MessageSquare } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram, Linkedin, Facebook, Lock, Clock, CheckCircle2, FileSearch, FileText, MessageSquare } from 'lucide-react';
 import { services } from '@/data/services';
 import ScrollReveal from '@/components/ScrollReveal';
 
@@ -417,32 +417,33 @@ export default function ContactPage() {
               <ScrollReveal>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 32 }}>
                   <div style={{ display: 'flex', gap: 12, alignItems: 'center', color: 'var(--text-body)', fontSize: 15 }}>
-                    <MapPin size={18} color="var(--accent)" /> 123 Centre Street SW, Calgary, AB
+                    <MapPin size={18} color="var(--accent)" /> Calgary, AB, Canada
                   </div>
-                  <a href="tel:+14035551234" style={{ display: 'flex', gap: 12, alignItems: 'center', color: 'var(--text-body)', fontSize: 15 }}>
-                    <Phone size={18} color="var(--accent)" /> (403) 555-1234
+                  <a href="tel:+15879731455" style={{ display: 'flex', gap: 12, alignItems: 'center', color: 'var(--text-body)', fontSize: 15 }}>
+                    <Phone size={18} color="var(--accent)" /> +1 (587) 973-1455
                   </a>
-                  <a href="mailto:hello@zirka.solutions" style={{ display: 'flex', gap: 12, alignItems: 'center', color: 'var(--text-body)', fontSize: 15 }}>
-                    <Mail size={18} color="var(--accent)" /> hello@zirka.solutions
+                  <a href="mailto:stan@zirkasolutions.com" style={{ display: 'flex', gap: 12, alignItems: 'center', color: 'var(--text-body)', fontSize: 15 }}>
+                    <Mail size={18} color="var(--accent)" /> stan@zirkasolutions.com
                   </a>
                 </div>
               </ScrollReveal>
 
-              {/* Map Placeholder */}
+              {/* Location Block */}
               <div style={{
-                width: '100%', height: 200, borderRadius: 12,
-                backgroundColor: 'var(--bg-card)', border: '1px solid var(--border-color)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: 'var(--text-muted)', fontSize: 14, marginBottom: 24,
-              }} role="img" aria-label="Google Maps showing Zirka Solutions office in Calgary">
-                Google Maps Embed
+                width: '100%', borderRadius: 12,
+                backgroundColor: 'var(--bg-card)', border: '1px solid rgba(59, 130, 246, 0.10)',
+                padding: 24, marginBottom: 24, textAlign: 'center',
+              }}>
+                <div style={{ fontSize: 32, marginBottom: 8 }}>📍</div>
+                <p style={{ color: 'var(--text-heading)', fontSize: 16, fontWeight: 600, marginBottom: 4 }}>Calgary, AB, Canada</p>
+                <p style={{ color: 'var(--text-muted)', fontSize: 13 }}>Serving businesses across Calgary and Canada</p>
               </div>
 
               <div style={{ display: 'flex', gap: 12 }}>
                 {[
-                  { label: 'Instagram', href: '#', Icon: Instagram },
-                  { label: 'LinkedIn', href: '#', Icon: Linkedin },
-                  { label: 'Facebook', href: '#', Icon: Facebook },
+                  { label: 'Instagram', href: 'https://www.instagram.com/zirka.solutions/', Icon: Instagram },
+                  { label: 'LinkedIn', href: 'https://linkedin.com/company/zirkasolutions', Icon: Linkedin },
+                  { label: 'Facebook', href: 'https://facebook.com/zirkasolutions', Icon: Facebook },
                 ].map(({ label, href, Icon }) => (
                   <a key={label} href={href} aria-label={`Zirka Solutions on ${label}`} style={{
                     width: 40, height: 40, borderRadius: 8,
@@ -497,10 +498,7 @@ export default function ContactPage() {
               {/* Trust signals */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginTop: 20, justifyContent: 'center' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text-muted)' }}>
-                  <Star size={14} color="var(--accent-gold)" fill="var(--accent-gold)" /> 4.9★ from 50+ reviews
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text-muted)' }}>
-                  <Clock size={14} /> We respond within 4 business hours
+                  <Clock size={14} /> Typically respond within 4 business hours
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text-muted)' }}>
                   <Lock size={14} /> Your information is secure

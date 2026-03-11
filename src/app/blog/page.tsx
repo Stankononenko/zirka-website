@@ -73,12 +73,10 @@ export default function BlogPage() {
                   <div style={{
                     height: 200,
                     backgroundColor: 'var(--bg-elevated)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
                     position: 'relative',
+                    overflow: 'hidden',
                   }} role="img" aria-label={`Featured image for article: ${post.title}`}>
-                    <span style={{ color: 'var(--text-muted)', fontSize: 14 }}>Featured Image</span>
+                    <img src={post.image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     <span style={{
                       position: 'absolute',
                       top: 12,
