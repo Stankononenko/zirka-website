@@ -115,7 +115,10 @@ export default function BlogPage() {
                       gap: 12,
                       fontSize: 13,
                       color: 'var(--text-muted)',
+                      flexWrap: 'wrap',
                     }}>
+                      <span>By {post.author}</span>
+                      <span>·</span>
                       <span>{new Date(post.date).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                       <span>·</span>
                       <span>{post.readTime}</span>

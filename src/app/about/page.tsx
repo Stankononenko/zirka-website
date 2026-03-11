@@ -5,14 +5,15 @@ import CTABanner from '@/components/CTABanner';
 import { Zap, LayoutGrid, MapPin, BarChart3 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Zirka Solutions | Calgary Growth & Operations Team',
-  description: "Meet the founder behind Zirka Solutions. Builder-operated, operator-minded, growth-obsessed consulting for Calgary businesses.",
+  title: 'About Zirka Solutions | Calgary Growth & Operations Consultant',
+  description: "Meet Anastasiia Sukhostavets, founder of Zirka Solutions. Operator-first growth consulting for Calgary businesses — marketing, AI automation, recruiting, and operations under one roof.",
   alternates: { canonical: 'https://zirka.solutions/about' },
   openGraph: {
-    title: 'About Zirka Solutions | Calgary Growth & Operations Team',
-    description: 'Meet the founder behind Zirka Solutions.',
+    title: 'About Zirka Solutions | Calgary Growth & Operations Consultant',
+    description: 'Meet the founder behind Zirka Solutions — operator-first growth consulting for Calgary businesses.',
     url: 'https://zirka.solutions/about',
     type: 'website',
+    images: [{ url: '/images/zirka-og.jpg', width: 1200, height: 630, alt: 'About Zirka Solutions Calgary' }],
   },
 };
 
@@ -61,7 +62,7 @@ export default function AboutPage() {
           }}>
             <Image
               src="/images/about-hero.jpg"
-              alt="Zirka Solutions — modern workspace representing business growth and operations"
+              alt="Zirka Solutions team - Calgary growth and operations consulting"
               fill
               style={{ objectFit: 'cover' }}
               priority
@@ -77,13 +78,13 @@ export default function AboutPage() {
             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 32, color: 'var(--text-heading)', marginBottom: 24 }}>Our Story</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20, color: 'var(--text-body)', fontSize: 16, lineHeight: 1.8 }}>
               <p>
-                Zirka Solutions was born from a simple frustration: growing businesses in Calgary shouldn&apos;t need to hire five different agencies, a recruiter, and a consultant just to scale.
+                I started Zirka after years of watching Calgary businesses struggle — not because of bad products, but because of bad systems. They&apos;d hire one agency for social media, another for SEO, a freelancer for their website, and a recruiter who didn&apos;t understand their culture. Nothing connected. Money was being wasted, and nobody was looking at the big picture.
               </p>
               <p>
-                We built Zirka to be the growth partner we wished existed — one team with deep expertise across marketing, technology, and operations. When your SEO team talks to your ads team, and your ads team talks to your web developer, and your operations consultant understands the whole picture — the results multiply.
+                I built Zirka to be the growth partner I wished existed when I was running my own operations — one team with deep expertise across marketing, technology, and operations. When your SEO strategy informs your ads, and your ads inform your web experience, and your operations keep the whole machine running — the results multiply.
               </p>
               <p>
-                We&apos;re operators first. We&apos;ve built businesses, scaled teams, and navigated the same challenges our clients face. We don&apos;t sell deliverables — we create measurable outcomes.
+                I&apos;m an operator first. I&apos;ve built businesses, scaled teams, and navigated the same challenges my clients face every day. I don&apos;t sell deliverables — I create <a href="/results" style={{ color: 'var(--accent)', fontWeight: 600 }}>measurable outcomes</a>.
               </p>
             </div>
           </AnimateOnScroll>
@@ -116,8 +117,8 @@ export default function AboutPage() {
                 position: 'relative',
               }}>
                 <Image
-                  src="/images/stan-kononenko.jpg"
-                  alt="Anastasiia Sukhostavets, Founder of Zirka Solutions"
+                  src="/images/founder-avatar.png"
+                  alt="Anastasiia Sukhostavets - Founder, Zirka Solutions Calgary"
                   fill
                   style={{ objectFit: 'cover' }}
                 />

@@ -106,7 +106,7 @@ export default function ContactPage() {
       const messages: Record<string, { title: string; body: string }> = {
         audit: { title: 'Your growth audit request is confirmed!', body: 'We\'ll review your details and come prepared with insights. You can also book a call below.' },
         quote: { title: 'We\'ll prepare a custom quote within 24 hours.', body: 'Our team will review your requirements and get back to you with a detailed proposal.' },
-        inquiry: { title: 'Thanks for reaching out!', body: 'We\'ll get back to you within 4 business hours.' },
+        inquiry: { title: 'Thanks for reaching out!', body: 'We\'ll get back to you within 1 business day.' },
       };
       const msg = messages[flow || 'inquiry'];
       return (
@@ -515,7 +515,7 @@ export default function ContactPage() {
               {/* Trust signals */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginTop: 20, justifyContent: 'center' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text-muted)' }}>
-                  <Clock size={14} /> Typically respond within 4 business hours
+                  <Clock size={14} /> Typically respond within 1 business day
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text-muted)' }}>
                   <Lock size={14} /> Your information is secure

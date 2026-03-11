@@ -9,7 +9,7 @@ export default function Footer() {
     { label: 'About', href: '/about' },
     { label: 'Results', href: '/results' },
     { label: 'Blog', href: '/blog' },
-    { label: 'Careers', href: '/contact' },
+    { label: 'Careers', href: '/careers' },
     { label: 'Contact', href: '/contact' },
   ];
 

@@ -6,6 +6,7 @@ export interface BlogPost {
   date: string;
   readTime: string;
   image: string;
+  author: string;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -17,6 +18,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-02-28',
     readTime: '8 min read',
     image: '/images/blog-seo.png',
+    author: 'Anastasiia Sukhostavets',
   },
   {
     slug: 'ai-voice-agents-small-business',
@@ -26,6 +28,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-02-21',
     readTime: '6 min read',
     image: '/images/blog-ai-voice.png',
+    author: 'Anastasiia Sukhostavets',
   },
   {
     slug: 'operations-scaling-mistakes',
@@ -35,6 +38,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-02-14',
     readTime: '7 min read',
     image: '/images/blog-growth.png',
+    author: 'Anastasiia Sukhostavets',
   },
   {
     slug: 'social-media-roi-calgary',
@@ -44,6 +48,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-02-07',
     readTime: '5 min read',
     image: '/images/blog-marketing.png',
+    author: 'Anastasiia Sukhostavets',
   },
   {
     slug: 'fractional-coo-guide',
@@ -53,6 +58,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-01-31',
     readTime: '9 min read',
     image: '/images/blog-growth.png',
+    author: 'Anastasiia Sukhostavets',
   },
   {
     slug: 'google-ads-calgary-tips',
@@ -62,6 +68,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-01-24',
     readTime: '6 min read',
     image: '/images/blog-marketing.png',
+    author: 'Anastasiia Sukhostavets',
   },
   {
     slug: 'website-conversion-optimization',
@@ -71,6 +78,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-01-17',
     readTime: '7 min read',
     image: '/images/blog-seo.png',
+    author: 'Anastasiia Sukhostavets',
   },
   {
     slug: 'hiring-calgary-talent-2026',
@@ -80,6 +88,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-01-10',
     readTime: '8 min read',
     image: '/images/blog-ai-voice.png',
+    author: 'Anastasiia Sukhostavets',
   },
 ];
 

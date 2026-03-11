@@ -57,6 +57,7 @@ export const metadata: Metadata = {
     description: "Zirka Solutions is Calgary's growth & operations partner.",
     url: 'https://zirka.solutions',
     type: 'website',
+    images: [{ url: '/images/zirka-og.jpg', width: 1200, height: 630, alt: 'Zirka Solutions — Growth & Operations Partner for Calgary Businesses' }],
   },
 };
 
@@ -90,6 +91,11 @@ export default function Home() {
       "https://linkedin.com/company/zirkasolutions",
       "https://facebook.com/zirkasolutions",
     ],
+    founder: {
+      "@type": "Person",
+      name: "Anastasiia Sukhostavets",
+      jobTitle: "Founder & Growth Partner",
+    },
   };
 
   const breadcrumbSchema = {
@@ -194,7 +200,7 @@ export default function Home() {
             }}>
               <Image
                 src="/images/hero-main.jpg"
-                alt="Calgary growth consulting hero"
+                alt="Calgary business growth consulting - Zirka Solutions"
                 fill
                 style={{ objectFit: 'cover' }}
                 priority
@@ -386,7 +392,7 @@ export default function Home() {
               }}>
                 <Image
                   src="/images/cs-dental-hero.jpg"
-                  alt="Calgary dental clinic growth case study"
+                  alt="Calgary dental clinic 147% revenue growth case study"
                   fill
                   style={{ objectFit: 'cover' }}
                 />

@@ -10,10 +10,10 @@ export interface Testimonial {
 export const testimonials: Testimonial[] = [
   {
     id: 1,
-    quote: "Zirka transformed our entire marketing approach. We went from scattered efforts to a cohesive strategy that actually drives leads. Our revenue is up 147% in six months and the team feels like an extension of our own.",
-    name: 'Anonymous',
-    title: 'CEO',
-    company: 'Calgary Dental Group',
+    quote: "Before Zirka, we were throwing money at marketing with no real plan. They came in, looked at everything — our ads, our website, even how we handled phone calls — and built a system that actually works. Revenue is up 147% in six months and honestly, it doesn't feel like we're working harder. Just smarter.",
+    name: 'M.T.',
+    title: 'Owner',
+    company: 'Calgary Dental Practice',
     rating: 5,
   },
   {
