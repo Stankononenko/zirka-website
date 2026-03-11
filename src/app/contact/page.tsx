@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { MapPin, Phone, Mail, Instagram, Linkedin, Facebook, Lock, Clock, CheckCircle2, FileSearch, FileText, MessageSquare } from 'lucide-react';
 import { services } from '@/data/services';
-import ScrollReveal from '@/components/ScrollReveal';
+import AnimateOnScroll from '@/components/AnimateOnScroll';
 
 type FlowType = 'audit' | 'quote' | 'inquiry' | null;
 
@@ -431,7 +431,7 @@ export default function ContactPage() {
                 Whether you need a full growth audit, a quick quote, or just want to chat — we&apos;re here.
               </p>
 
-              <ScrollReveal>
+              <AnimateOnScroll>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 32 }}>
                   <div style={{ display: 'flex', gap: 12, alignItems: 'center', color: 'var(--text-body)', fontSize: 15 }}>
                     <MapPin size={18} color="var(--accent)" /> Calgary, AB, Canada
@@ -439,11 +439,11 @@ export default function ContactPage() {
                   <a href="tel:+15879731455" style={{ display: 'flex', gap: 12, alignItems: 'center', color: 'var(--text-body)', fontSize: 15 }}>
                     <Phone size={18} color="var(--accent)" /> +1 (587) 973-1455
                   </a>
-                  <a href="mailto:stan@zirkasolutions.com" style={{ display: 'flex', gap: 12, alignItems: 'center', color: 'var(--text-body)', fontSize: 15 }}>
-                    <Mail size={18} color="var(--accent)" /> stan@zirkasolutions.com
+                  <a href="mailto:zirka.calgary@gmail.com" style={{ display: 'flex', gap: 12, alignItems: 'center', color: 'var(--text-body)', fontSize: 15 }}>
+                    <Mail size={18} color="var(--accent)" /> zirka.calgary@gmail.com
                   </a>
                 </div>
-              </ScrollReveal>
+              </AnimateOnScroll>
 
               {/* Location Block */}
               <div style={{

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { caseStudies, industries, serviceFilters } from '@/data/caseStudies';
-import ScrollReveal from '@/components/ScrollReveal';
+import AnimateOnScroll from '@/components/AnimateOnScroll';
 import CTABanner from '@/components/CTABanner';
 
 export default function ResultsPage() {
@@ -105,7 +105,7 @@ export default function ResultsPage() {
           {/* Cards */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 20 }} className="results-grid">
             {filtered.map((cs, i) => (
-              <ScrollReveal key={cs.id} delay={i * 0.08}>
+              <AnimateOnScroll key={cs.id} delay={i * 0.08}>
                 <div style={{
                   backgroundColor: 'var(--bg-card)',
                   border: '1px solid var(--border-color)',
@@ -151,7 +151,7 @@ export default function ResultsPage() {
                     </Link>
                   </div>
                 </div>
-              </ScrollReveal>
+              </AnimateOnScroll>
             ))}
           </div>
 

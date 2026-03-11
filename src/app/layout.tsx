@@ -6,6 +6,7 @@ import SplashScreen from "@/components/SplashScreen";
 import ScrollToTop from "@/components/ScrollToTop";
 import MobileBottomCTA from "@/components/MobileBottomCTA";
 import ExitIntentModal from "@/components/ExitIntentModal";
+import PageTransition from "@/components/PageTransition";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://zirka.solutions'),
@@ -75,7 +76,9 @@ export default function RootLayout({
         <SplashScreen />
         <Navigation />
         <main id="main-content">
-          {children}
+          <PageTransition>
+            {children}
+          </PageTransition>
         </main>
         <Footer />
         <ScrollToTop />

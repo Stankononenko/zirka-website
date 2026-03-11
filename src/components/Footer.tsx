@@ -119,8 +119,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:stan@zirkasolutions.com" className="footer-link" style={{ display: 'flex', gap: 10, alignItems: 'center', color: 'var(--text-muted)', fontSize: 14, transition: 'color 0.2s' }}>
-                  <Mail size={16} /> stan@zirkasolutions.com
+                <a href="mailto:zirka.calgary@gmail.com" className="footer-link" style={{ display: 'flex', gap: 10, alignItems: 'center', color: 'var(--text-muted)', fontSize: 14, transition: 'color 0.2s' }}>
+                  <Mail size={16} /> zirka.calgary@gmail.com
                 </a>
               </li>
             </ul>

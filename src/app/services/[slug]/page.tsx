@@ -3,7 +3,7 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import { ArrowRight, MessageCircle, Camera, Search, Target, Bot, TrendingUp, Settings, Users, Code } from 'lucide-react';
 import { services, getServiceBySlug, getRelatedServices } from '@/data/services';
-import ScrollReveal from '@/components/ScrollReveal';
+import AnimateOnScroll from '@/components/AnimateOnScroll';
 import StatCounter from '@/components/StatCounter';
 import FAQAccordion from '@/components/FAQAccordion';
 import CTABanner from '@/components/CTABanner';
@@ -125,7 +125,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       <section className="section-spacing">
         <div className="container-main">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 48 }} className="problem-solution-grid">
-            <ScrollReveal>
+            <AnimateOnScroll>
               <div>
                 <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 28, color: 'var(--text-heading)', marginBottom: 24 }}>
                   The Challenge
@@ -142,9 +142,9 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                   ))}
                 </div>
               </div>
-            </ScrollReveal>
+            </AnimateOnScroll>
 
-            <ScrollReveal delay={0.15}>
+            <AnimateOnScroll delay={0.15}>
               <div>
                 <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 28, color: 'var(--text-heading)', marginBottom: 24 }}>
                   Our Approach
@@ -161,7 +161,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                   ))}
                 </div>
               </div>
-            </ScrollReveal>
+            </AnimateOnScroll>
           </div>
         </div>
       </section>
@@ -169,14 +169,14 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       {/* What You Get */}
       <section className="section-spacing" style={{ backgroundColor: 'var(--bg-card)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
         <div className="container-main">
-          <ScrollReveal>
+          <AnimateOnScroll>
             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 32, color: 'var(--text-heading)', marginBottom: 40, textAlign: 'center' }}>
               What You Get
             </h2>
-          </ScrollReveal>
+          </AnimateOnScroll>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 16 }} className="deliverables-grid">
             {service.deliverables.map((d, i) => (
-              <ScrollReveal key={i} delay={i * 0.1}>
+              <AnimateOnScroll key={i} delay={i * 0.1}>
                 <div style={{
                   backgroundColor: 'var(--bg-primary)', border: '1px solid var(--border-color)',
                   borderRadius: 12, padding: 24, display: 'flex', gap: 16, alignItems: 'flex-start',
@@ -193,7 +193,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                     <p style={{ color: 'var(--text-muted)', fontSize: 14, margin: 0, lineHeight: 1.6 }}>{d.description}</p>
                   </div>
                 </div>
-              </ScrollReveal>
+              </AnimateOnScroll>
             ))}
           </div>
         </div>
@@ -202,20 +202,20 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       {/* Results Metrics */}
       <section className="section-spacing">
         <div className="container-main">
-          <ScrollReveal>
+          <AnimateOnScroll>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(1, 1fr)', gap: 32, maxWidth: 800, margin: '0 auto' }} className="metrics-grid">
               {service.metrics.map((m, i) => (
                 <StatCounter key={i} value={m.value} label={m.label} />
               ))}
             </div>
-          </ScrollReveal>
+          </AnimateOnScroll>
         </div>
       </section>
 
       {/* Case Study */}
       <section className="section-spacing" style={{ backgroundColor: 'var(--bg-card)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
         <div className="container-main" style={{ maxWidth: 800, margin: '0 auto' }}>
-          <ScrollReveal>
+          <AnimateOnScroll>
             <div style={{ backgroundColor: 'var(--bg-primary)', border: '1px solid var(--border-color)', borderRadius: 12, padding: 32 }}>
               <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 12, display: 'block' }}>
                 CASE STUDY
@@ -238,37 +238,37 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 Explore more case studies <ArrowRight size={16} />
               </Link>
             </div>
-          </ScrollReveal>
+          </AnimateOnScroll>
         </div>
       </section>
 
       {/* FAQ */}
       <section className="section-spacing">
         <div className="container-main" style={{ maxWidth: 720, margin: '0 auto' }}>
-          <ScrollReveal>
+          <AnimateOnScroll>
             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 32, color: 'var(--text-heading)', marginBottom: 32, textAlign: 'center' }}>
               Frequently Asked Questions
             </h2>
-          </ScrollReveal>
-          <ScrollReveal delay={0.15}>
+          </AnimateOnScroll>
+          <AnimateOnScroll delay={0.15}>
             <FAQAccordion items={service.faqs} />
-          </ScrollReveal>
+          </AnimateOnScroll>
         </div>
       </section>
 
       {/* Related Services */}
       <section className="section-spacing" style={{ backgroundColor: 'var(--bg-card)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
         <div className="container-main">
-          <ScrollReveal>
+          <AnimateOnScroll>
             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 28, color: 'var(--text-heading)', marginBottom: 32, textAlign: 'center' }}>
               Services That Pair Well With {service.name}
             </h2>
-          </ScrollReveal>
+          </AnimateOnScroll>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 16, maxWidth: 900, margin: '0 auto' }} className="related-grid">
             {related.map((r, i) => {
               const Icon = iconMap[r.icon];
               return (
-                <ScrollReveal key={r.slug} delay={i * 0.1}>
+                <AnimateOnScroll key={r.slug} delay={i * 0.1}>
                   <Link href={`/services/${r.slug}`} style={{ display: 'block', textDecoration: 'none' }}>
                     <div className="card" style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
                       <div style={{
@@ -284,7 +284,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                       <ArrowRight size={18} color="var(--accent)" style={{ flexShrink: 0 }} />
                     </div>
                   </Link>
-                </ScrollReveal>
+                </AnimateOnScroll>
               );
             })}
           </div>

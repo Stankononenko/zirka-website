@@ -214,6 +214,7 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
+                className="nav-link-hover"
                 style={{
                   color: 'var(--text-muted)',
                   fontSize: 15,
@@ -228,7 +229,7 @@ export default function Navigation() {
               </Link>
             ))}
 
-            <Link href="/contact" className="btn-primary" style={{ padding: '10px 20px', fontSize: 14 }}>
+            <Link href="/contact" className="btn-primary cta-pulse" style={{ padding: '10px 20px', fontSize: 14 }}>
               Get Your Free Growth Audit
             </Link>
           </div>

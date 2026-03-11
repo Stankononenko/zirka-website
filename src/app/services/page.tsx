@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ArrowRight, MessageCircle, Camera, Search, Target, Bot, TrendingUp, Settings, Users, Code } from 'lucide-react';
 import { services } from '@/data/services';
-import ScrollReveal from '@/components/ScrollReveal';
+import AnimateOnScroll from '@/components/AnimateOnScroll';
 import CTABanner from '@/components/CTABanner';
 
 const iconMap: Record<string, React.ElementType> = {
@@ -75,7 +75,7 @@ export default function ServicesPage() {
             {services.map((service, i) => {
               const Icon = iconMap[service.icon];
               return (
-                <ScrollReveal key={service.slug} delay={i * 0.06}>
+                <AnimateOnScroll key={service.slug} delay={i * 0.06}>
                   <Link href={`/services/${service.slug}`} style={{ display: 'block', textDecoration: 'none' }}>
                     <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: 12, height: '100%' }}>
                       <div style={{
@@ -95,7 +95,7 @@ export default function ServicesPage() {
                       </span>
                     </div>
                   </Link>
-                </ScrollReveal>
+                </AnimateOnScroll>
               );
             })}
           </div>
@@ -105,7 +105,7 @@ export default function ServicesPage() {
       {/* Better Together */}
       <section className="section-spacing" style={{ backgroundColor: 'var(--bg-card)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
         <div className="container-main">
-          <ScrollReveal>
+          <AnimateOnScroll>
             <div style={{ textAlign: 'center', marginBottom: 56 }}>
               <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(28px, 4vw, 36px)', color: 'var(--text-heading)', marginBottom: 12 }}>
                 Better Together
@@ -114,11 +114,11 @@ export default function ServicesPage() {
                 Our services are designed to interconnect. When they work together, the results multiply.
               </p>
             </div>
-          </ScrollReveal>
+          </AnimateOnScroll>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 32 }} className="clusters-grid">
             {clusters.map((cluster, ci) => (
-              <ScrollReveal key={cluster.name} delay={ci * 0.15}>
+              <AnimateOnScroll key={cluster.name} delay={ci * 0.15}>
                 <div style={{
                   backgroundColor: 'var(--bg-primary)',
                   border: '1px solid var(--border-color)',
@@ -157,7 +157,7 @@ export default function ServicesPage() {
                     ))}
                   </div>
                 </div>
-              </ScrollReveal>
+              </AnimateOnScroll>
             ))}
           </div>
         </div>

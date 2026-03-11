@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { blogPosts, blogCategories } from '@/data/blogPosts';
-import ScrollReveal from '@/components/ScrollReveal';
+import AnimateOnScroll from '@/components/AnimateOnScroll';
 import CTABanner from '@/components/CTABanner';
 
 export default function BlogPage() {
@@ -62,7 +62,7 @@ export default function BlogPage() {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 20 }} className="blog-grid">
             {filtered.map((post, i) => (
-              <ScrollReveal key={post.slug} delay={i * 0.08}>
+              <AnimateOnScroll key={post.slug} delay={i * 0.08}>
                 <article style={{
                   backgroundColor: 'var(--bg-card)',
                   border: '1px solid var(--border-color)',
@@ -122,7 +122,7 @@ export default function BlogPage() {
                     </div>
                   </div>
                 </article>
-              </ScrollReveal>
+              </AnimateOnScroll>
             ))}
           </div>
         </div>

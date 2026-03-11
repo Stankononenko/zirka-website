@@ -46,7 +46,7 @@ export async function POST(request: Request) {
 
       await transporter.sendMail({
         from: `"Zirka Website" <${smtpUser}>`,
-        to: 'stan@zirkasolutions.com',
+        to: 'zirka.calgary@gmail.com',
         replyTo: email,
         subject: `[Zirka Website] ${flow === 'audit' ? 'Growth Audit Request' : flow === 'quote' ? 'Quote Request' : 'General Inquiry'} from ${name}`,
         html: htmlBody,

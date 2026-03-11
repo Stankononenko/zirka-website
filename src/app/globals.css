@@ -364,6 +364,79 @@ a {
   background: var(--text-muted);
 }
 
+/* CTA gradient background animation */
+@keyframes gradientShiftCTA {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.cta-gradient-bg {
+  background: linear-gradient(
+    135deg,
+    var(--bg-card) 0%,
+    rgba(59, 130, 246, 0.06) 25%,
+    var(--bg-card) 50%,
+    rgba(6, 182, 212, 0.06) 75%,
+    var(--bg-card) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShiftCTA 15s ease-in-out infinite;
+}
+
+/* Button shimmer effect */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: shimmerSweep 4s ease-in-out infinite;
+}
+@keyframes shimmerSweep {
+  0%, 100% { left: -100%; }
+  50% { left: 150%; }
+}
+
+/* Nav link hover underline */
+.nav-link-hover {
+  position: relative;
+}
+.nav-link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+  transition: width 0.3s ease;
+}
+.nav-link-hover:hover::after {
+  width: 100%;
+}
+
+/* CTA pulse animation */
+@keyframes ctaPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.cta-pulse {
+  animation: ctaPulse 4s ease-in-out infinite;
+}
+
 /* Footer hover classes */
 .footer-link:hover {
   color: var(--text-body) !important;

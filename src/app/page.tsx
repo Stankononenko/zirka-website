@@ -3,7 +3,7 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import { ArrowRight, MessageCircle, Camera, Search, Target, Bot, TrendingUp, Settings, Users, Code, MapPin, Snowflake, Network } from 'lucide-react';
 import { services } from '@/data/services';
-import ScrollReveal from '@/components/ScrollReveal';
+import AnimateOnScroll from '@/components/AnimateOnScroll';
 import StatCounter from '@/components/StatCounter';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
 import FAQAccordion from '@/components/FAQAccordion';
@@ -67,7 +67,7 @@ export default function Home() {
     name: "Zirka Solutions",
     url: "https://zirka.solutions",
     telephone: "+1-587-973-1455",
-    email: "stan@zirkasolutions.com",
+    email: "zirka.calgary@gmail.com",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Calgary",
@@ -205,7 +205,7 @@ export default function Home() {
       </section>
 
       {/* === SOCIAL PROOF STATS === */}
-      <ScrollReveal>
+      <AnimateOnScroll>
         <section style={{
           backgroundColor: 'var(--bg-card)',
           borderTop: '1px solid var(--border-color)',
@@ -224,12 +224,12 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </ScrollReveal>
+      </AnimateOnScroll>
 
       {/* === SERVICES OVERVIEW === */}
       <section className="section-spacing">
         <div className="container-main">
-          <ScrollReveal>
+          <AnimateOnScroll>
             <div style={{ textAlign: 'center', marginBottom: 48 }}>
               <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(28px, 4vw, 40px)', color: 'var(--text-heading)', marginBottom: 12 }}>
                 Everything You Need to <span className="gradient-text">Grow</span>
@@ -238,7 +238,7 @@ export default function Home() {
                 Nine specialized services that work better together.
               </p>
             </div>
-          </ScrollReveal>
+          </AnimateOnScroll>
 
           <div style={{
             display: 'grid',
@@ -248,7 +248,7 @@ export default function Home() {
             {services.map((service, i) => {
               const Icon = iconMap[service.icon];
               return (
-                <ScrollReveal key={service.slug} delay={i * 0.08}>
+                <AnimateOnScroll key={service.slug} delay={i * 0.08}>
                   <Link href={`/services/${service.slug}`} style={{ display: 'block', textDecoration: 'none' }}>
                     <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: 12, height: '100%' }}>
                       <div style={{
@@ -269,7 +269,7 @@ export default function Home() {
                       </span>
                     </div>
                   </Link>
-                </ScrollReveal>
+                </AnimateOnScroll>
               );
             })}
           </div>
@@ -277,7 +277,7 @@ export default function Home() {
       </section>
 
       {/* === CALGARY'S GROWTH PARTNER === */}
-      <ScrollReveal>
+      <AnimateOnScroll>
         <section className="section-spacing" style={{ backgroundColor: 'var(--bg-card)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
           <div className="container-main">
             <div style={{ textAlign: 'center', marginBottom: 48 }}>
@@ -295,7 +295,7 @@ export default function Home() {
                 { Icon: Snowflake, title: 'Chinook Effect', desc: "We understand Calgary's unique seasonal business cycles" },
                 { Icon: Network, title: 'Local Network', desc: 'Direct connections to Calgary Chamber of Commerce ecosystem' },
               ].map((item, i) => (
-                <ScrollReveal key={i} delay={i * 0.12}>
+                <AnimateOnScroll key={i} delay={i * 0.12}>
                   <div style={{
                     backgroundColor: 'var(--bg-primary)',
                     border: '1px solid rgba(59, 130, 246, 0.10)',
@@ -318,23 +318,23 @@ export default function Home() {
                       {item.desc}
                     </p>
                   </div>
-                </ScrollReveal>
+                </AnimateOnScroll>
               ))}
             </div>
           </div>
         </section>
-      </ScrollReveal>
+      </AnimateOnScroll>
 
       {/* === HOW IT WORKS === */}
       <section className="section-spacing">
         <div className="container-main">
-          <ScrollReveal>
+          <AnimateOnScroll>
             <div style={{ textAlign: 'center', marginBottom: 48 }}>
               <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(28px, 4vw, 40px)', color: 'var(--text-heading)', marginBottom: 12 }}>
                 How It Works
               </h2>
             </div>
-          </ScrollReveal>
+          </AnimateOnScroll>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 40, maxWidth: 900, margin: '0 auto' }} className="steps-grid">
             {[
@@ -342,7 +342,7 @@ export default function Home() {
               { num: '2', title: 'Custom Strategy', desc: 'You get a tailored growth roadmap with clear priorities, timelines, and expected outcomes.' },
               { num: '3', title: 'Measurable Results', desc: 'We execute, measure, optimize, and scale — reporting real metrics every step.' },
             ].map((step, i) => (
-              <ScrollReveal key={i} delay={i * 0.15}>
+              <AnimateOnScroll key={i} delay={i * 0.15}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', position: 'relative' }}>
                   <div style={{
                     width: 56, height: 56, borderRadius: '50%',
@@ -361,7 +361,7 @@ export default function Home() {
                     {step.desc}
                   </p>
                 </div>
-              </ScrollReveal>
+              </AnimateOnScroll>
             ))}
           </div>
         </div>
@@ -370,7 +370,7 @@ export default function Home() {
       {/* === FEATURED CASE STUDY === */}
       <section className="section-spacing" style={{ backgroundColor: 'var(--bg-card)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
         <div className="container-main">
-          <ScrollReveal>
+          <AnimateOnScroll>
             <div style={{
               backgroundColor: 'var(--bg-primary)',
               border: '1px solid rgba(59, 130, 246, 0.10)',
@@ -421,30 +421,30 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-          </ScrollReveal>
+          </AnimateOnScroll>
         </div>
       </section>
 
       {/* === TESTIMONIALS === */}
       <section className="section-spacing">
         <div className="container-main">
-          <ScrollReveal>
+          <AnimateOnScroll>
             <div style={{ textAlign: 'center', marginBottom: 48 }}>
               <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(28px, 4vw, 40px)', color: 'var(--text-heading)' }}>
                 What Calgary Business Owners Say
               </h2>
             </div>
-          </ScrollReveal>
-          <ScrollReveal delay={0.15}>
+          </AnimateOnScroll>
+          <AnimateOnScroll delay={0.15}>
             <TestimonialCarousel />
-          </ScrollReveal>
+          </AnimateOnScroll>
         </div>
       </section>
 
       {/* === FAQ SECTION === */}
       <section className="section-spacing">
         <div className="container-main" style={{ maxWidth: 720, margin: '0 auto' }}>
-          <ScrollReveal>
+          <AnimateOnScroll>
             <div style={{ textAlign: 'center', marginBottom: 40 }}>
               <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(28px, 4vw, 40px)', color: 'var(--text-heading)', marginBottom: 12 }}>
                 Frequently Asked Questions
@@ -453,10 +453,10 @@ export default function Home() {
                 Everything you need to know about working with Zirka
               </p>
             </div>
-          </ScrollReveal>
-          <ScrollReveal delay={0.15}>
+          </AnimateOnScroll>
+          <AnimateOnScroll delay={0.15}>
             <FAQAccordion items={homepageFaqs} />
-          </ScrollReveal>
+          </AnimateOnScroll>
         </div>
       </section>
 

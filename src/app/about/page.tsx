@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import ScrollReveal from '@/components/ScrollReveal';
+import AnimateOnScroll from '@/components/AnimateOnScroll';
 import CTABanner from '@/components/CTABanner';
 import { Zap, LayoutGrid, MapPin, BarChart3 } from 'lucide-react';
 
@@ -73,7 +73,7 @@ export default function AboutPage() {
       {/* Our Story */}
       <section className="section-spacing" style={{ backgroundColor: 'var(--bg-card)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
         <div className="container-main" style={{ maxWidth: 720 }}>
-          <ScrollReveal>
+          <AnimateOnScroll>
             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 32, color: 'var(--text-heading)', marginBottom: 24 }}>Our Story</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20, color: 'var(--text-body)', fontSize: 16, lineHeight: 1.8 }}>
               <p>
@@ -86,19 +86,19 @@ export default function AboutPage() {
                 We&apos;re operators first. We&apos;ve built businesses, scaled teams, and navigated the same challenges our clients face. We don&apos;t sell deliverables — we create measurable outcomes.
               </p>
             </div>
-          </ScrollReveal>
+          </AnimateOnScroll>
         </div>
       </section>
 
       {/* Founder */}
       <section className="section-spacing">
         <div className="container-main">
-          <ScrollReveal>
+          <AnimateOnScroll>
             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 32, color: 'var(--text-heading)', marginBottom: 40, textAlign: 'center' }}>
               Meet the Founder
             </h2>
-          </ScrollReveal>
-          <ScrollReveal delay={0.1}>
+          </AnimateOnScroll>
+          <AnimateOnScroll delay={0.1}>
             <div style={{
               backgroundColor: 'var(--bg-card)',
               border: '1px solid rgba(59, 130, 246, 0.10)',
@@ -117,36 +117,36 @@ export default function AboutPage() {
               }}>
                 <Image
                   src="/images/stan-kononenko.jpg"
-                  alt="Stan Kononenko, Founder of Zirka Solutions"
+                  alt="Anastasiia Sukhostavets, Founder of Zirka Solutions"
                   fill
                   style={{ objectFit: 'cover' }}
                 />
               </div>
               <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 22, color: 'var(--text-heading)', marginBottom: 6 }}>
-                Stan Kononenko
+                Anastasiia Sukhostavets
               </h3>
               <p style={{ color: 'var(--accent)', fontSize: 15, fontWeight: 600, marginBottom: 16 }}>
                 Founder & Growth Partner
               </p>
               <p style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.7, margin: 0 }}>
-                Growth & Operations consultant with experience in marketing, recruiting, AI automation, and business operations. Built Zirka to be the partner he wished existed.
+                Growth & Operations consultant with experience in marketing, recruiting, AI automation, and business operations. Built Zirka to be the partner she wished existed.
               </p>
             </div>
-          </ScrollReveal>
+          </AnimateOnScroll>
         </div>
       </section>
 
       {/* Values */}
       <section className="section-spacing" style={{ backgroundColor: 'var(--bg-card)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
         <div className="container-main">
-          <ScrollReveal>
+          <AnimateOnScroll>
             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 32, color: 'var(--text-heading)', marginBottom: 40, textAlign: 'center' }}>
               What We Believe
             </h2>
-          </ScrollReveal>
+          </AnimateOnScroll>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 20, maxWidth: 900, margin: '0 auto' }} className="values-grid">
             {values.map((v, i) => (
-              <ScrollReveal key={v.name} delay={i * 0.1}>
+              <AnimateOnScroll key={v.name} delay={i * 0.1}>
                 <div style={{ backgroundColor: 'var(--bg-primary)', border: '1px solid rgba(59, 130, 246, 0.10)', borderRadius: 12, padding: 24, display: 'flex', gap: 16, alignItems: 'flex-start' }}>
                   <div style={{
                     width: 48, height: 48, borderRadius: 10, backgroundColor: 'var(--bg-elevated)',
@@ -159,7 +159,7 @@ export default function AboutPage() {
                     <p style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.6, margin: 0 }}>{v.description}</p>
                   </div>
                 </div>
-              </ScrollReveal>
+              </AnimateOnScroll>
             ))}
           </div>
         </div>
