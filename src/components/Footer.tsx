@@ -40,13 +40,14 @@ export default function Footer() {
               gap: 8,
               marginBottom: 12,
             }}>
-              <span style={{
-                width: 32, height: 32,
-                background: 'linear-gradient(135deg, var(--accent), var(--accent-cyan))',
-                borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 16, fontWeight: 700, color: '#F8FAFC',
-              }}>Z</span>
-              Zirka Solutions
+              <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="48" height="48" rx="12" fill="#2563EB"/>
+                <path d="M24 9L28 19.5L39 19.5L30 26.5L33.5 37L24 30L14.5 37L18 26.5L9 19.5L20 19.5Z" fill="white"/>
+              </svg>
+              <div>
+                <div>Zirka</div>
+                <div style={{ fontSize: 10, letterSpacing: 3, color: '#6b6b7a', fontWeight: 600 }}>SOLUTIONS</div>
+              </div>
             </Link>
             <p style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.6, maxWidth: 280, marginBottom: 16 }}>
               Growth & Operations Partner for Calgary Businesses
@@ -77,15 +78,56 @@ export default function Footer() {
           <div>
             <h3 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-heading)', marginBottom: 16, textTransform: 'uppercase', letterSpacing: 1 }}>Services</h3>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {services.map((s) => (
+              {services.filter(s => s.slug !== 'ai-automation').map((s) => (
                 <li key={s.slug}>
-                  <Link href={`/services/${s.slug}`} className="footer-link" style={{
-                    color: 'var(--text-muted)', fontSize: 14, transition: 'color 0.2s',
-                  }}>
+                  <Link 
+                    href={`/services/${s.slug}`} 
+                    className="footer-link" 
+                    style={{
+                      color: 'var(--text-muted)', fontSize: 14, transition: 'color 0.2s',
+                    }}
+                  >
                     {s.name}
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link href="/services" className="footer-link" style={{ color: 'var(--text-muted)', fontSize: 14, transition: 'color 0.2s', fontWeight: 600 }}>
+                  All Services →
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: AI Products */}
+          <div>
+            <h3 style={{ fontSize: 14, fontWeight: 700, color: 'var(--text-heading)', marginBottom: 16, textTransform: 'uppercase', letterSpacing: 1 }}>AI Team</h3>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {[
+                { name: 'ARIA — AI Chat', href: '/aria' },
+                { name: 'MIA — AI Phone', href: '/mia' },
+                { name: 'DAYA — AI Video', href: '/daya' },
+                { name: 'SOVA (Soon)', href: '/sova' },
+                { name: 'LUNA (Soon)', href: '/luna' },
+                { name: 'NIKO (Soon)', href: '/niko' },
+              ].map((item) => (
+                <li key={item.href}>
+                  <Link 
+                    href={item.href} 
+                    className="footer-link" 
+                    style={{
+                      color: 'var(--text-muted)', fontSize: 14, transition: 'color 0.2s',
+                    }}
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/ai-team" className="footer-link" style={{ color: 'var(--text-muted)', fontSize: 14, transition: 'color 0.2s', fontWeight: 600 }}>
+                  Full AI Ecosystem →
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -119,8 +161,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:zirka.calgary@gmail.com" className="footer-link" style={{ display: 'flex', gap: 10, alignItems: 'center', color: 'var(--text-muted)', fontSize: 14, transition: 'color 0.2s' }}>
-                  <Mail size={16} /> zirka.calgary@gmail.com
+                <a href="mailto:info@zirka.solutions" className="footer-link" style={{ display: 'flex', gap: 10, alignItems: 'center', color: 'var(--text-muted)', fontSize: 14, transition: 'color 0.2s' }}>
+                  <Mail size={16} /> info@zirka.solutions
                 </a>
               </li>
             </ul>
@@ -132,11 +174,12 @@ export default function Footer() {
           display: 'flex', flexWrap: 'wrap', gap: 16, justifyContent: 'center',
           marginTop: 48, paddingBottom: 24,
         }}>
-          {['BBB Accredited', 'Calgary Chamber of Commerce', 'Google Partner', 'Meta Business Partner'].map((badge) => (
+          {['Local Calgary Experts', 'Data-Driven Strategies', 'Custom AI Solutions', 'Transparent Pricing'].map((badge) => (
             <div key={badge} style={{
               padding: '8px 16px', backgroundColor: 'var(--bg-elevated)',
-              borderRadius: 6, fontSize: 12, color: 'var(--text-muted)',
+              borderRadius: 6, fontSize: 13, color: 'var(--text-muted)',
               border: '1px solid var(--border-color)',
+              fontWeight: 500
             }}>
               {badge}
             </div>

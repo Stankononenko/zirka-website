@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { motion, useReducedMotion } from 'framer-motion';
 import AnimateOnScroll from './AnimateOnScroll';
 
 interface CTABannerProps {
@@ -19,8 +18,6 @@ export default function CTABanner({
   buttonHref = "/contact",
   note = "No commitment. No pressure. Just clarity.",
 }: CTABannerProps) {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <section
       id="footer-cta"

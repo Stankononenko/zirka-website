@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Calgary Business Results | Client Case Studies | Zirka Solutions',
+  title: 'Calgary Business Results | Client Case Studies',
   description: "See real results from Calgary businesses we've helped grow. Case studies with measurable outcomes across marketing, operations, and AI automation.",
   alternates: { canonical: 'https://zirka.solutions/results' },
   openGraph: {

@@ -8,6 +8,10 @@ import StatCounter from '@/components/StatCounter';
 import TestimonialCarousel from '@/components/TestimonialCarousel';
 import FAQAccordion from '@/components/FAQAccordion';
 import CTABanner from '@/components/CTABanner';
+import TiltCard from '@/components/TiltCard';
+import PromotionalOffers from '@/components/PromotionalOffers';
+import AiProductsSection from '@/components/AiProductsSection';
+import HeroSpline from '@/components/HeroSpline';
 
 const homepageFaqs = [
   {
@@ -49,7 +53,7 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export const metadata: Metadata = {
-  title: 'Calgary Marketing & Growth Agency | Zirka Solutions',
+  title: 'Calgary Marketing & Growth Agency',
   description: "Zirka Solutions is Calgary's growth & operations partner. Marketing, SEO, AI automation, web development, and recruiting under one roof. Book your free growth audit.",
   alternates: { canonical: 'https://zirka.solutions' },
   openGraph: {
@@ -68,7 +72,7 @@ export default function Home() {
     name: "Zirka Solutions",
     url: "https://zirka.solutions",
     telephone: "+1-587-973-1455",
-    email: "zirka.calgary@gmail.com",
+    email: "info@zirka.solutions",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Calgary",
@@ -91,11 +95,20 @@ export default function Home() {
       "https://linkedin.com/company/zirkasolutions",
       "https://facebook.com/zirkasolutions",
     ],
-    founder: {
-      "@type": "Person",
-      name: "Anastasiia Sukhostavets",
-      jobTitle: "Founder & Growth Partner",
-    },
+    founder: [
+      {
+        "@type": "Person",
+        name: "Anastasiia Sukhostavets",
+        jobTitle: "Co-Founder & Growth Partner",
+        sameAs: "https://www.instagram.com/anastasiia.ca/",
+      },
+      {
+        "@type": "Person",
+        name: "Stan Kononenko",
+        jobTitle: "Co-Founder & Technical Lead",
+        sameAs: "https://www.instagram.com/stass_knk/",
+      },
+    ],
   };
 
   const breadcrumbSchema = {
@@ -104,111 +117,13 @@ export default function Home() {
     itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://zirka.solutions" }],
   };
 
-  const clientNames = ['Restaurant Group', 'Dental Clinic', 'Real Estate Co.', 'Tech Startup', 'Fitness Studio'];
-
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* === HERO === */}
-      <section style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden', paddingTop: 72 }}>
-        <div className="gradient-mesh" />
-        <div className="floating-shape floating-shape-1" />
-        <div className="floating-shape floating-shape-2" />
-        <div className="floating-shape floating-shape-3" />
-        <div className="floating-shape floating-shape-4" />
-
-        <div className="hero-grid container-main" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 48, position: 'relative', zIndex: 1, width: '100%', alignItems: 'center' }}>
-          <div style={{ maxWidth: 720 }}>
-            {/* Badge */}
-            <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              borderLeft: '3px solid var(--accent)',
-              paddingLeft: 12,
-              marginBottom: 24,
-              fontSize: 13,
-              fontWeight: 600,
-              letterSpacing: 1.5,
-              textTransform: 'uppercase',
-              color: 'var(--accent)',
-            }}>
-              Growth & Operations Consulting
-            </div>
-
-            <h1 style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(40px, 6vw, 64px)',
-              color: 'var(--text-heading)',
-              marginBottom: 20,
-              lineHeight: 1.05,
-              fontWeight: 900,
-            }}>
-              <span className="gradient-text">Scale</span> Your Business Without the Growing Pains
-            </h1>
-
-            <p style={{
-              color: 'var(--text-muted)',
-              fontSize: 18,
-              lineHeight: 1.7,
-              marginBottom: 32,
-              maxWidth: 560,
-            }}>
-              Strategic consulting that transforms operational chaos into scalable growth systems. Marketing, AI, recruiting, and operations — all under one roof.
-            </p>
-
-            <div id="hero-cta" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 40 }}>
-              <Link href="/contact" className="btn-primary" style={{ padding: '16px 28px' }}>
-                Get Your Free Growth Audit
-              </Link>
-              <Link href="/results" className="btn-secondary" style={{ padding: '16px 28px' }}>
-                See Our Results
-              </Link>
-            </div>
-
-            {/* Client name pills */}
-            <div>
-              <div style={{ display: 'flex', gap: 10, marginBottom: 12, flexWrap: 'wrap' }}>
-                {clientNames.map((name) => (
-                  <span key={name} style={{
-                    padding: '6px 14px',
-                    borderRadius: 20,
-                    backgroundColor: 'rgba(148, 163, 184, 0.08)',
-                    border: '1px solid rgba(148, 163, 184, 0.12)',
-                    color: 'var(--text-muted)',
-                    fontSize: 12,
-                    fontWeight: 500,
-                  }}>
-                    {name}
-                  </span>
-                ))}
-              </div>
-              <p style={{ color: 'var(--text-muted)', fontSize: 13 }}>Trusted by 36+ Calgary Businesses</p>
-            </div>
-          </div>
-
-          {/* Hero Image */}
-          <div style={{ position: 'relative', width: '100%', maxWidth: 520, margin: '0 auto' }} className="hero-image-wrapper">
-            <div style={{
-              width: '100%',
-              aspectRatio: '4/3',
-              borderRadius: 16,
-              overflow: 'hidden',
-              position: 'relative',
-              border: '1px solid rgba(59, 130, 246, 0.15)',
-              boxShadow: '0 8px 40px rgba(59, 130, 246, 0.12)',
-            }}>
-              <Image
-                src="/images/hero-main.jpg"
-                alt="Calgary business growth consulting - Zirka Solutions"
-                fill
-                style={{ objectFit: 'cover' }}
-                priority
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSpline />
 
       {/* === SOCIAL PROOF STATS === */}
       <AnimateOnScroll>
@@ -224,9 +139,9 @@ export default function Home() {
               gridTemplateColumns: 'repeat(1, 1fr)',
               gap: 32,
             }} className="stats-grid">
-              <StatCounter value="36+" label="Clients Served" />
-              <StatCounter value="9" label="Services, One Partner" />
-              <StatCounter value="5+" label="Years Experience" />
+              <StatCounter value="6" label="AI Products" />
+              <StatCounter value="9" label="Specialized Services" />
+              <StatCounter value="24/7" label="AI Coverage" />
             </div>
           </div>
         </section>
@@ -255,32 +170,45 @@ export default function Home() {
               const Icon = iconMap[service.icon];
               return (
                 <AnimateOnScroll key={service.slug} delay={i * 0.08}>
-                  <Link href={`/services/${service.slug}`} style={{ display: 'block', textDecoration: 'none' }}>
-                    <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: 12, height: '100%' }}>
-                      <div style={{
-                        width: 48, height: 48, borderRadius: '50%',
-                        backgroundColor: 'var(--bg-elevated)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      }}>
-                        {Icon && <Icon size={22} color="var(--accent)" />}
+                  <TiltCard maxTilt={5}>
+                    <Link href={`/services/${service.slug}`} style={{ display: 'block', textDecoration: 'none', height: '100%' }}>
+                      <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: 0, height: '100%', padding: 0, overflow: 'hidden' }}>
+                        <div style={{ width: '100%', height: 160, position: 'relative', overflow: 'hidden' }}>
+                          <Image src={service.image} alt={service.name} fill style={{ objectFit: 'cover' }} quality={70} />
+                          <div style={{
+                            position: 'absolute', top: 12, left: 12, width: 32, height: 32, borderRadius: '50%',
+                            backgroundColor: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(4px)',
+                            display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(255,255,255,0.1)',
+                          }}>
+                            {Icon && <Icon size={16} color="var(--accent)" />}
+                          </div>
+                        </div>
+                        <div style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
+                          <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-heading)', margin: 0, fontFamily: 'var(--font-heading)' }}>
+                            {service.name}
+                          </h3>
+                          <p style={{ color: 'var(--text-muted)', fontSize: 13, lineHeight: 1.5, margin: 0, flex: 1 }}>
+                            {service.shortDescription}
+                          </p>
+                          <span style={{ color: 'var(--accent)', fontSize: 13, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}>
+                            Learn more <ArrowRight size={14} />
+                          </span>
+                        </div>
                       </div>
-                      <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-heading)', margin: 0, fontFamily: 'var(--font-heading)' }}>
-                        {service.name}
-                      </h3>
-                      <p style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.6, margin: 0, flex: 1 }}>
-                        {service.shortDescription}
-                      </p>
-                      <span style={{ color: 'var(--accent)', fontSize: 14, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}>
-                        Learn more <ArrowRight size={14} />
-                      </span>
-                    </div>
-                  </Link>
+                    </Link>
+                  </TiltCard>
                 </AnimateOnScroll>
               );
             })}
           </div>
         </div>
       </section>
+
+      {/* === AI PRODUCTS SECTION === */}
+      <AiProductsSection />
+
+      {/* === PROMOTIONAL OFFERS === */}
+      <PromotionalOffers />
 
       {/* === CALGARY'S GROWTH PARTNER === */}
       <AnimateOnScroll>
@@ -377,56 +305,58 @@ export default function Home() {
       <section className="section-spacing" style={{ backgroundColor: 'var(--bg-card)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
         <div className="container-main">
           <AnimateOnScroll>
-            <div style={{
-              backgroundColor: 'var(--bg-primary)',
-              border: '1px solid rgba(59, 130, 246, 0.10)',
-              borderRadius: 12,
-              overflow: 'hidden',
-              display: 'grid',
-              gridTemplateColumns: '1fr',
-            }} className="case-study-card">
+            <TiltCard maxTilt={3}>
               <div style={{
-                aspectRatio: '16/9',
-                position: 'relative',
+                backgroundColor: 'var(--bg-primary)',
+                border: '1px solid rgba(59, 130, 246, 0.10)',
+                borderRadius: 12,
                 overflow: 'hidden',
-              }}>
-                <Image
-                  src="/images/cs-dental-hero.jpg"
-                  alt="Calgary dental clinic 147% revenue growth case study"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
-              <div style={{ padding: '32px' }}>
-                <span style={{
-                  fontSize: 12, fontWeight: 700, letterSpacing: 2,
-                  textTransform: 'uppercase', color: 'var(--accent)',
-                  marginBottom: 12, display: 'block',
+                display: 'grid',
+                gridTemplateColumns: '1fr',
+              }} className="case-study-card">
+                <div style={{
+                  aspectRatio: '16/9',
+                  position: 'relative',
+                  overflow: 'hidden',
                 }}>
-                  CASE STUDY
-                </span>
-                <h2 style={{
-                  fontFamily: 'var(--font-heading)', fontSize: 'clamp(24px, 3vw, 32px)',
-                  color: 'var(--text-heading)', marginBottom: 16,
-                }}>
-                  147% Revenue Growth in 6 Months
-                </h2>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 20 }}>
-                  <p style={{ color: 'var(--text-body)', fontSize: 15, lineHeight: 1.6, margin: 0 }}>
-                    <strong>Challenge:</strong> A Calgary dental group had hit a revenue plateau with inconsistent marketing and chaotic operations.
-                  </p>
-                  <p style={{ color: 'var(--text-body)', fontSize: 15, lineHeight: 1.6, margin: 0 }}>
-                    <strong>Solution:</strong> Comprehensive growth strategy spanning SEO, Google Ads, social media, and AI voice agents.
-                  </p>
-                  <p style={{ color: 'var(--text-body)', fontSize: 15, lineHeight: 1.6, margin: 0 }}>
-                    <strong>Result:</strong> 147% revenue growth, 340% social engagement increase, and 38% more leads via automation.
-                  </p>
+                  <Image
+                    src="/images/case-study-calgary-dental-revenue-growth.png"
+                    alt="Calgary dental clinic 147% revenue growth case study"
+                    fill
+                    style={{ objectFit: 'cover' }}
+                  />
                 </div>
-                <Link href="/results" style={{ color: 'var(--accent)', fontWeight: 600, fontSize: 15, display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                  Read the Full Case Study <ArrowRight size={16} />
-                </Link>
+                <div style={{ padding: '32px' }}>
+                  <span style={{
+                    fontSize: 12, fontWeight: 700, letterSpacing: 2,
+                    textTransform: 'uppercase', color: 'var(--accent)',
+                    marginBottom: 12, display: 'block',
+                  }}>
+                    CASE STUDY
+                  </span>
+                  <h2 style={{
+                    fontFamily: 'var(--font-heading)', fontSize: 'clamp(24px, 3vw, 32px)',
+                    color: 'var(--text-heading)', marginBottom: 16,
+                  }}>
+                    147% Revenue Growth in 6 Months
+                  </h2>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 20 }}>
+                    <p style={{ color: 'var(--text-body)', fontSize: 15, lineHeight: 1.6, margin: 0 }}>
+                      <strong>Challenge:</strong> A Calgary dental group had hit a revenue plateau with inconsistent marketing and chaotic operations.
+                    </p>
+                    <p style={{ color: 'var(--text-body)', fontSize: 15, lineHeight: 1.6, margin: 0 }}>
+                      <strong>Solution:</strong> Comprehensive growth strategy spanning SEO, Google Ads, social media, and Mia (AI voice agent).
+                    </p>
+                    <p style={{ color: 'var(--text-body)', fontSize: 15, lineHeight: 1.6, margin: 0 }}>
+                      <strong>Result:</strong> 147% revenue growth, 340% social engagement increase, and 38% more leads via automation.
+                    </p>
+                  </div>
+                  <Link href="/results" style={{ color: 'var(--accent)', fontWeight: 600, fontSize: 15, display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                    Read the Full Case Study <ArrowRight size={16} />
+                  </Link>
+                </div>
               </div>
-            </div>
+            </TiltCard>
           </AnimateOnScroll>
         </div>
       </section>

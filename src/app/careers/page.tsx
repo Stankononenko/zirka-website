@@ -3,11 +3,11 @@ import Link from 'next/link';
 import CTABanner from '@/components/CTABanner';
 
 export const metadata: Metadata = {
-  title: 'Careers at Zirka Solutions | Join Our Calgary Team',
+  title: 'Careers | Join Our Calgary Team',
   description: 'Explore career opportunities at Zirka Solutions. We are growing our Calgary-based growth and operations consulting team. Check back for open positions.',
   alternates: { canonical: 'https://zirka.solutions/careers' },
   openGraph: {
-    title: 'Careers at Zirka Solutions | Join Our Calgary Team',
+    title: 'Careers | Join Our Calgary Team',
     description: 'Explore career opportunities at Zirka Solutions in Calgary.',
     url: 'https://zirka.solutions/careers',
     type: 'website',

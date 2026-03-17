@@ -26,7 +26,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: 3,
-    quote: "The AI voice agent alone has captured over $180K in revenue from calls we used to miss. Zirka doesn\'t just consult — they build real systems that keep working long after the engagement ends.",
+    quote: "Mia alone has captured over $180K in revenue from calls we used to miss. Zirka doesn't just consult — they build real systems that keep working long after the engagement ends.",
     name: 'Priya Sharma',
     title: 'Marketing Director',
     company: 'Alpine Tech Solutions',

@@ -6,6 +6,11 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
+        disallow: [
+          '/api/',
+          '/_next/',
+          '/cgi-bin/',
+        ],
       },
     ],
     sitemap: 'https://zirka.solutions/sitemap.xml',

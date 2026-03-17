@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import { ArrowRight, MessageCircle, Camera, Search, Target, Bot, TrendingUp, Settings, Users, Code } from 'lucide-react';
 import { services } from '@/data/services';
@@ -77,22 +78,28 @@ export default function ServicesPage() {
               return (
                 <AnimateOnScroll key={service.slug} delay={i * 0.06}>
                   <Link href={`/services/${service.slug}`} style={{ display: 'block', textDecoration: 'none' }}>
-                    <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: 12, height: '100%' }}>
-                      <div style={{
-                        width: 48, height: 48, borderRadius: '50%', backgroundColor: 'var(--bg-elevated)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      }}>
-                        {Icon && <Icon size={22} color="var(--accent)" />}
+                    <div className="card" style={{ display: 'flex', flexDirection: 'column', gap: 0, height: '100%', padding: 0, overflow: 'hidden' }}>
+                      <div style={{ width: '100%', height: 180, position: 'relative', overflow: 'hidden' }}>
+                        <Image src={service.image} alt={service.name} fill style={{ objectFit: 'cover' }} quality={80} />
+                        <div style={{
+                          position: 'absolute', top: 12, left: 12, width: 32, height: 32, borderRadius: '50%',
+                          backgroundColor: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(4px)',
+                          display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(255,255,255,0.1)',
+                        }}>
+                          {Icon && <Icon size={16} color="var(--accent)" />}
+                        </div>
                       </div>
-                      <h2 style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-heading)', margin: 0, fontFamily: 'var(--font-heading)' }}>
-                        {service.name}
-                      </h2>
-                      <p style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.6, margin: 0, flex: 1 }}>
-                        {service.shortDescription}
-                      </p>
-                      <span style={{ color: 'var(--accent)', fontSize: 14, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}>
-                        Explore {service.name} <ArrowRight size={14} />
-                      </span>
+                      <div style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 12, flex: 1 }}>
+                        <h2 style={{ fontSize: 17, fontWeight: 700, color: 'var(--text-heading)', margin: 0, fontFamily: 'var(--font-heading)' }}>
+                          {service.name}
+                        </h2>
+                        <p style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.6, margin: 0, flex: 1 }}>
+                          {service.shortDescription}
+                        </p>
+                        <span style={{ color: 'var(--accent)', fontSize: 13, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}>
+                          Learn more <ArrowRight size={14} />
+                        </span>
+                      </div>
                     </div>
                   </Link>
                 </AnimateOnScroll>

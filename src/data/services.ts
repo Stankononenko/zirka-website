@@ -20,6 +20,9 @@ export interface ServiceData {
     result: string;
   };
   cluster: 'marketing' | 'technology' | 'operations';
+  image: string;
+  relatedBlogPosts?: string[];
+  relatedCaseStudies?: string[];
 }
 
 export const services: ServiceData[] = [
@@ -71,6 +74,9 @@ export const services: ServiceData[] = [
       result: '340% increase in engagement, 156 new patient inquiries attributed to social media, and a 4.3x return on marketing investment.',
     },
     cluster: 'marketing',
+    image: '/images/sm_v10.png',
+    relatedBlogPosts: ['social-media-roi-calgary'],
+    relatedCaseStudies: ['restaurant-social-media-growth', 'dental-revenue-growth'],
   },
   {
     slug: 'photo-video-production',
@@ -118,6 +124,9 @@ export const services: ServiceData[] = [
       result: '3.2x increase in social media reach, 185% engagement boost, and a measurable uptick in reservations from social media referrals.',
     },
     cluster: 'marketing',
+    image: '/images/pv_v10.png',
+    relatedBlogPosts: ['social-media-roi-calgary'],
+    relatedCaseStudies: ['restaurant-social-media-growth'],
   },
   {
     slug: 'seo',
@@ -168,6 +177,9 @@ export const services: ServiceData[] = [
       result: '147% increase in organic traffic, 85% of target keywords ranking on page one, and a 60% reduction in paid advertising dependency.',
     },
     cluster: 'marketing',
+    image: '/images/seo_v10.png',
+    relatedBlogPosts: ['calgary-seo-guide-2026', 'website-not-converting'],
+    relatedCaseStudies: ['dental-revenue-growth', 'property-management-lead-growth', 'ecommerce-conversion-lift'],
   },
   {
     slug: 'google-ads',
@@ -216,6 +228,9 @@ export const services: ServiceData[] = [
       result: '4.2x ROAS, 42% lower cost per lead, and 210% more conversions within 90 days of management takeover.',
     },
     cluster: 'marketing',
+    image: '/images/ads_v10.png',
+    relatedBlogPosts: ['google-ads-calgary-tips'],
+    relatedCaseStudies: ['dental-revenue-growth', 'property-management-lead-growth', 'restaurant-social-media-growth', 'ecommerce-conversion-lift'],
   },
   {
     slug: 'ai-automation',
@@ -233,13 +248,13 @@ export const services: ServiceData[] = [
       { title: 'Disconnected Systems', description: 'Your tools don\'t talk to each other, creating data silos and manual workarounds.' },
     ],
     solutions: [
-      { title: 'AI Voice Agents', description: 'Deploy conversational AI agents that answer calls, qualify leads, and book appointments 24/7.' },
+      { title: 'Mia: AI Voice Agents', description: 'Deploy Mia, our conversational AI agent that answers calls, qualifies leads, and books appointments 24/7.' },
       { title: 'Workflow Automation', description: 'Automate repetitive processes — lead follow-ups, data sync, reporting, and customer communications.' },
       { title: 'System Integration', description: 'Connect your CRM, marketing tools, and business systems for seamless data flow.' },
       { title: 'Custom AI Solutions', description: 'Purpose-built AI tools for your specific business challenges, from chatbots to predictive analytics.' },
     ],
     deliverables: [
-      { name: 'AI Voice Agent Setup', description: 'Custom-trained voice agent for calls, bookings, and lead qualification.' },
+      { name: 'Mia AI Voice Agent Setup', description: 'Custom-trained voice agent for calls, bookings, and lead qualification.' },
       { name: 'Workflow Automation', description: 'Automated processes for lead nurturing, follow-ups, and internal operations.' },
       { name: 'System Integration', description: 'Connect CRM, email, calendar, and business tools into unified workflows.' },
       { name: 'Chatbot Development', description: 'AI-powered website chatbots for 24/7 customer engagement and support.' },
@@ -251,7 +266,7 @@ export const services: ServiceData[] = [
       { value: '+38%', label: 'Lead Response Rate' },
     ],
     faqs: [
-      { question: 'What is an AI voice agent?', answer: 'An AI voice agent is a conversational AI that answers phone calls, understands natural language, qualifies leads, books appointments, and routes calls — it sounds natural and works 24/7 without breaks.' },
+      { question: 'What is Mia?', answer: 'Mia is our custom conversational AI that answers phone calls, understands natural language, qualifies leads, books appointments, and routes calls — she sounds natural and works 24/7 without breaks.' },
       { question: 'Will AI replace my staff?', answer: 'No — AI handles repetitive, low-value tasks so your team can focus on high-value work. Think of it as adding capacity without adding headcount. Your team becomes more efficient, not replaced.' },
       { question: 'How long does AI implementation take?', answer: 'Basic automations can be set up in 1-2 weeks. Voice agents typically take 2-4 weeks for training and testing. Complex system integrations may take 4-8 weeks.' },
       { question: 'What systems can you integrate with?', answer: 'We integrate with most major platforms including Salesforce, HubSpot, Google Workspace, Microsoft 365, Slack, Zapier, and hundreds of other tools via API connections.' },
@@ -259,59 +274,67 @@ export const services: ServiceData[] = [
     ],
     relatedSlugs: ['operations-optimization', 'web-development', 'growth-consulting'],
     caseStudy: {
-      headline: '24/7 Lead Capture with AI Voice Agents',
-      challenge: 'A Calgary property management company was missing 40% of incoming calls during evenings and weekends, losing potential tenant inquiries.',
-      solution: 'We deployed an AI voice agent trained on their property listings, qualification criteria, and booking system to handle all after-hours calls.',
+      headline: 'Mia: 24/7 Lead Capture for Property Managers',
+      challenge: 'The client was losing thousands in revenue monthly from leads calling after hours or when the front desk was busy.',
+      solution: 'We deployed Mia, trained on their property listings, qualification criteria, and booking system to handle all after-hours calls.',
       result: '38% increase in captured leads, 65% reduction in manual follow-up tasks, and an estimated $180K in additional annual revenue from previously missed inquiries.',
     },
     cluster: 'technology',
+    image: '/images/ai_v10.png',
+    relatedBlogPosts: ['ai-voice-agents-small-business'],
+    relatedCaseStudies: ['dental-revenue-growth', 'property-management-lead-growth', 'tech-company-operations'],
   },
   {
-    slug: 'growth-consulting',
+    slug: 'business-growth-consulting',
     name: 'Business Growth Consulting',
     shortDescription: 'Strategic guidance to identify revenue opportunities and scale faster.',
     metaTitle: 'Business Growth Consulting Calgary | Fractional COO',
     metaDescription: 'Strategic growth consulting for Calgary businesses. Fractional COO services, revenue optimization, and scaling strategies. Book a free growth audit.',
     keywords: ['business consultant Calgary', 'growth consulting Calgary', 'fractional COO Calgary'],
-    heroTagline: 'Get the strategic leadership of a seasoned COO without the full-time salary — we find the opportunities you\'re leaving on the table.',
+    heroTagline: 'Turn strategic confusion into a clear roadmap for sustainable, predictable growth.',
     icon: 'TrendingUp',
     challenges: [
-      { title: 'Revenue Plateaus', description: 'Your business has stalled at a revenue ceiling and you can\'t figure out what\'s blocking growth.' },
-      { title: 'No Clear Strategy', description: 'You\'re busy every day but not sure if the work is actually moving the business forward.' },
-      { title: 'Scaling Pain', description: 'What got you here won\'t get you there — your systems, team, and processes need to level up.' },
-      { title: 'Decision Overload', description: 'Too many options, not enough data — you need an objective perspective on priorities.' },
+      { title: 'Revenue Plateau', description: 'You\'ve hit a ceiling. Growth has stalled and you don\'t know why — or how to break through.' },
+      { title: 'No Strategic Direction', description: 'You\'re reactive, not proactive. Every week is firefighting, not building toward a goal.' },
+      { title: 'Misaligned Team', description: 'Your team is working hard but not in the same direction. Priorities shift constantly.' },
+      { title: 'Missed Opportunities', description: 'You sense there\'s more revenue in your business but can\'t identify or capture it.' },
     ],
     solutions: [
-      { title: 'Growth Audit', description: 'Deep-dive analysis of your revenue streams, operations, team, and market position to identify opportunities.' },
-      { title: 'Strategic Roadmap', description: 'A prioritized growth plan with specific initiatives, timelines, KPIs, and expected outcomes.' },
-      { title: 'Fractional COO Services', description: 'Ongoing strategic leadership — we embed with your team to drive execution and accountability.' },
-      { title: 'Revenue Optimization', description: 'Find and fix revenue leaks, optimize pricing, and build predictable revenue systems.' },
+      { title: 'Business Diagnostic', description: 'Deep assessment of revenue model, team, operations, marketing, and market position.' },
+      { title: 'Growth Roadmap', description: 'Prioritized 90-day and 12-month action plan with clear milestones and owners.' },
+      { title: 'Execution Support', description: 'We don\'t just hand you a strategy deck — we work alongside you to implement.' },
+      { title: 'Progress Reviews', description: 'Monthly strategy sessions to review KPIs, adjust tactics, and keep momentum.' },
     ],
     deliverables: [
-      { name: 'Comprehensive Growth Audit', description: 'Full business analysis with scored opportunities and priority recommendations.' },
-      { name: 'Strategic Growth Roadmap', description: '90-day and 12-month plans with clear milestones and KPIs.' },
-      { name: 'Financial Modeling', description: 'Revenue projections and scenario planning for growth initiatives.' },
-      { name: 'Executive Advisory', description: 'Regular strategy sessions with experienced operators and consultants.' },
+      { name: 'Business Diagnostic Report', description: 'Comprehensive analysis of your current state, bottlenecks, and opportunities.' },
+      { name: '90-Day Growth Roadmap', description: 'Prioritized action plan with specific tactics, timelines, and expected outcomes.' },
+      { name: 'Revenue Opportunity Map', description: 'Identified revenue gaps with estimated impact and implementation path.' },
+      { name: 'Monthly Strategy Sessions', description: '60-minute working sessions to review progress and adjust direction.' },
+      { name: 'On-Demand Access', description: 'Direct access to your Growth Partner for questions, decisions, and quick pivots.' },
     ],
     metrics: [
       { value: '+147%', label: 'Average Revenue Growth' },
-      { value: '$2.3M', label: 'Revenue Unlocked for Clients' },
-      { value: '92%', label: 'Client Satisfaction Score' },
+      { value: '90 Days', label: 'To First Milestone' },
+      { value: '36+', label: 'Calgary Businesses Scaled' },
     ],
     faqs: [
-      { question: 'What is a fractional COO?', answer: 'A fractional COO provides Chief Operating Officer-level strategic leadership on a part-time or project basis. You get experienced executive guidance without the $200K+ salary of a full-time hire.' },
-      { question: 'What does a growth audit include?', answer: 'Our growth audit analyzes your revenue streams, customer acquisition, operations, team structure, technology stack, and competitive positioning. You receive a scored report with prioritized opportunities.' },
-      { question: 'How is Zirka different from other consultants?', answer: 'We don\'t just advise — we execute. Our team includes specialists across marketing, technology, and operations, so we can implement the strategies we recommend.' },
-      { question: 'What size businesses do you work with?', answer: 'We primarily work with businesses doing $500K-$20M in annual revenue. Our sweet spot is companies that have product-market fit but need help scaling operations and revenue.' },
+      { question: 'How is this different from hiring a business coach?', answer: 'Business coaches give advice. We give advice AND execute. We\'re embedded in your business, implementing alongside you — not just holding you accountable to actions you figured out yourself.' },
+      { question: 'What size businesses do you work with?', answer: 'Our sweet spot is Calgary businesses doing $500K–$10M in revenue. You need a proven product or service — we provide the strategic infrastructure to scale it.' },
+      { question: 'How long is a typical engagement?', answer: 'Most clients start with a 3-month engagement to deliver a full diagnostic and initial roadmap. Many continue month-to-month for ongoing execution support.' },
+      { question: 'What industries do you specialize in?', answer: 'We work across industries — dental, restaurant, real estate, professional services, tech, retail. The strategic and operational challenges are more universal than people think.' },
+      { question: 'Do I need to commit to other Zirka services?', answer: 'No. Consulting is standalone. That said, clients who combine consulting with execution services (marketing, ops) see faster results because strategy and execution happen in lockstep.' },
     ],
-    relatedSlugs: ['operations-optimization', 'ai-automation', 'recruiting-staffing'],
+    relatedSlugs: ['operations-optimization', 'ai-automation', 'seo'],
     caseStudy: {
-      headline: '147% Revenue Growth in 6 Months',
-      challenge: 'A Calgary professional services firm had plateaued at $1.8M revenue with no clear path to growth despite a strong client base.',
-      solution: 'We conducted a comprehensive growth audit, identified three untapped revenue streams, and built a 90-day execution plan with weekly accountability.',
-      result: '147% revenue growth to $4.4M within 6 months, plus operational improvements that increased profit margins by 12 percentage points.',
+      headline: '147% Revenue Growth — Calgary Dental Group',
+      challenge: 'A Calgary dental group had plateaued at the same revenue for 3 years. Operations were chaotic, marketing was fragmented, and the owner was burned out.',
+      solution: '6-month growth partnership — we rebuilt their strategy from the ground up, aligned their team, and executed across marketing, operations, and AI automation simultaneously.',
+      result: '147% revenue increase, 38% more leads via automation, and the owner working fewer hours.',
     },
     cluster: 'operations',
+    image: '/images/growth_v10.png',
+    relatedBlogPosts: ['fractional-coo-guide', 'website-not-converting'],
+    relatedCaseStudies: ['dental-revenue-growth', 'tech-company-operations'],
   },
   {
     slug: 'operations-optimization',
@@ -360,6 +383,9 @@ export const services: ServiceData[] = [
       result: '35% reduction in operational costs, 58% increase in measured productivity, and employee satisfaction scores improved significantly.',
     },
     cluster: 'operations',
+    image: '/images/ops_v10.png',
+    relatedBlogPosts: ['operations-mistakes-calgary-businesses', 'fractional-coo-guide'],
+    relatedCaseStudies: ['dental-revenue-growth', 'tech-company-operations', 'tech-startup-recruiting'],
   },
   {
     slug: 'recruiting-staffing',
@@ -407,6 +433,9 @@ export const services: ServiceData[] = [
       result: 'All 8 positions filled within 45 days, 94% retention at 12 months, and an estimated $340K saved compared to the cost of bad hires.',
     },
     cluster: 'operations',
+    image: '/images/rec_v10.png',
+    relatedBlogPosts: ['calgary-hiring-2026'],
+    relatedCaseStudies: ['tech-startup-recruiting'],
   },
   {
     slug: 'web-development',
@@ -456,6 +485,9 @@ export const services: ServiceData[] = [
       result: '195% increase in conversion rate, 3.2-second improvement in mobile load time, and a 280% increase in form submissions within the first month.',
     },
     cluster: 'technology',
+    image: '/images/web_v10.png',
+    relatedBlogPosts: ['website-not-converting'],
+    relatedCaseStudies: ['property-management-lead-growth', 'ecommerce-conversion-lift'],
   },
 ];
 

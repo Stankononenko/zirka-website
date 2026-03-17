@@ -7,6 +7,9 @@ import ScrollToTop from "@/components/ScrollToTop";
 import MobileBottomCTA from "@/components/MobileBottomCTA";
 import ExitIntentModal from "@/components/ExitIntentModal";
 import PageTransition from "@/components/PageTransition";
+import FloatingMiaChat from "@/components/FloatingMiaChat";
+
+import ConditionalLayout from "@/components/ConditionalLayout";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://zirka.solutions'),
@@ -60,7 +63,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en-CA">
       <head>
         <link rel="preload" href="/fonts/Inter-Regular.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/SpaceGrotesk-Bold.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
@@ -74,15 +77,16 @@ export default function RootLayout({
           Skip to main content
         </a>
         <SplashScreen />
-        <Navigation />
-        <main id="main-content">
-          <PageTransition>
-            {children}
-          </PageTransition>
-        </main>
-        <Footer />
+        <ConditionalLayout>
+          <main id="main-content">
+            <PageTransition>
+              {children}
+            </PageTransition>
+          </main>
+        </ConditionalLayout>
         <ScrollToTop />
         <MobileBottomCTA />
+        <FloatingMiaChat />
         <ExitIntentModal />
       </body>
     </html>

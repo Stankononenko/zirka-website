@@ -1,14 +1,20 @@
-'use client';
+import type { Metadata } from 'next';
+import BlogClient from '@/components/BlogClient';
 
-import { useState } from 'react';
-import { blogPosts, blogCategories } from '@/data/blogPosts';
-import AnimateOnScroll from '@/components/AnimateOnScroll';
-import CTABanner from '@/components/CTABanner';
+export const metadata: Metadata = {
+  title: 'Marketing & Operations Blog | Calgary Business Insights',
+  description: "Actionable insights on marketing, SEO, AI automation, and operations for Calgary business owners. Stay ahead of the curve with Zirka Solutions.",
+  alternates: { canonical: 'https://zirka.solutions/blog' },
+  openGraph: {
+    title: 'Marketing & Operations Blog | Calgary Business Insights',
+    description: "Actionable insights for Calgary business owners on marketing, SEO, AI, and operations.",
+    url: 'https://zirka.solutions/blog',
+    type: 'website',
+    images: [{ url: '/images/zirka-og.jpg', width: 1200, height: 630, alt: 'Zirka Solutions Blog' }],
+  },
+};
 
 export default function BlogPage() {
-  const [category, setCategory] = useState('All');
-  const filtered = category === 'All' ? blogPosts : blogPosts.filter((p) => p.category === category);
-
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -21,117 +27,7 @@ export default function BlogPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-
-      {/* Hero */}
-      <section style={{ paddingTop: 140, paddingBottom: 40 }}>
-        <div className="container-main" style={{ maxWidth: 720 }}>
-          <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(36px, 5vw, 52px)', color: 'var(--text-heading)', marginBottom: 16 }}>
-            Blog
-          </h1>
-          <p style={{ color: 'var(--text-muted)', fontSize: 18, lineHeight: 1.7 }}>
-            Actionable insights on marketing, SEO, AI automation, and operations for Calgary business owners.
-          </p>
-        </div>
-      </section>
-
-      {/* Filters + Posts */}
-      <section className="section-spacing" style={{ paddingTop: 0 }}>
-        <div className="container-main">
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 40 }}>
-            {blogCategories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setCategory(cat)}
-                style={{
-                  padding: '8px 16px',
-                  borderRadius: 6,
-                  border: '1px solid var(--border-color)',
-                  backgroundColor: category === cat ? 'var(--accent)' : 'transparent',
-                  color: category === cat ? '#F8FAFC' : 'var(--text-muted)',
-                  fontSize: 13,
-                  fontWeight: 500,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s',
-                  minHeight: 36,
-                }}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 20 }} className="blog-grid">
-            {filtered.map((post, i) => (
-              <AnimateOnScroll key={post.slug} delay={i * 0.08}>
-                <article style={{
-                  backgroundColor: 'var(--bg-card)',
-                  border: '1px solid var(--border-color)',
-                  borderRadius: 12,
-                  overflow: 'hidden',
-                  transition: 'all 0.3s ease',
-                }}>
-                  <div style={{
-                    height: 200,
-                    backgroundColor: 'var(--bg-elevated)',
-                    position: 'relative',
-                    overflow: 'hidden',
-                  }} role="img" aria-label={`Featured image for article: ${post.title}`}>
-                    <img src={post.image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    <span style={{
-                      position: 'absolute',
-                      top: 12,
-                      left: 12,
-                      padding: '4px 10px',
-                      borderRadius: 4,
-                      backgroundColor: 'var(--accent)',
-                      color: '#F8FAFC',
-                      fontSize: 11,
-                      fontWeight: 600,
-                    }}>
-                      {post.category}
-                    </span>
-                  </div>
-                  <div style={{ padding: 24 }}>
-                    <h2 style={{
-                      fontFamily: 'var(--font-heading)',
-                      fontSize: 18,
-                      color: 'var(--text-heading)',
-                      marginBottom: 8,
-                      lineHeight: 1.3,
-                    }}>
-                      {post.title}
-                    </h2>
-                    <p style={{
-                      color: 'var(--text-muted)',
-                      fontSize: 14,
-                      lineHeight: 1.6,
-                      marginBottom: 16,
-                    }}>
-                      {post.excerpt}
-                    </p>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 12,
-                      fontSize: 13,
-                      color: 'var(--text-muted)',
-                      flexWrap: 'wrap',
-                    }}>
-                      <span>By {post.author}</span>
-                      <span>·</span>
-                      <span>{new Date(post.date).toLocaleDateString('en-CA', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                      <span>·</span>
-                      <span>{post.readTime}</span>
-                    </div>
-                  </div>
-                </article>
-              </AnimateOnScroll>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <CTABanner />
+      <BlogClient />
     </>
   );
 }

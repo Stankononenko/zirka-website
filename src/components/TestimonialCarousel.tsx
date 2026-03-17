@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Star } from 'lucide-react';
 import { testimonials } from '@/data/testimonials';
@@ -26,16 +26,19 @@ export default function TestimonialCarousel() {
 
   const slideVariants = {
     enter: (dir: number) => ({
-      x: dir > 0 ? '100%' : '-100%',
+      x: dir > 0 ? 30 : -30,
       opacity: 0,
+      filter: 'blur(4px)',
     }),
     center: {
       x: 0,
       opacity: 1,
+      filter: 'blur(0px)',
     },
     exit: (dir: number) => ({
-      x: dir > 0 ? '-100%' : '100%',
+      x: dir > 0 ? -30 : 30,
       opacity: 0,
+      filter: 'blur(4px)',
     }),
   };
 
@@ -46,34 +49,36 @@ export default function TestimonialCarousel() {
       role="region"
       aria-label="Client testimonials"
       aria-roledescription="carousel"
+      style={{ padding: '0 20px' }}
     >
       <div
         style={{
-          backgroundColor: 'var(--bg-card)',
-          border: '1px solid var(--border-color)',
-          borderRadius: 12,
-          padding: '40px 32px',
-          maxWidth: 720,
-          margin: '0 auto',
           position: 'relative',
-          minHeight: 280,
-          overflow: 'hidden',
+          maxWidth: 880,
+          margin: '0 auto',
+          minHeight: 340,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
         }}
         role="group"
         aria-roledescription="slide"
         aria-label={`Testimonial ${current + 1} of ${testimonials.length}`}
       >
-        {/* Quote mark */}
+        {/* Huge subtle quote mark */}
         <span style={{
           position: 'absolute',
-          top: 16,
-          left: 24,
+          top: -20,
+          left: '50%',
+          transform: 'translateX(-50%)',
           fontFamily: 'var(--font-heading)',
-          fontSize: 80,
-          color: 'rgba(59, 130, 246, 0.2)',
+          fontSize: 240,
+          color: 'var(--bg-elevated)',
           lineHeight: 1,
           pointerEvents: 'none',
           userSelect: 'none',
+          zIndex: 0,
+          opacity: 0.5,
         }}>&ldquo;</span>
 
         <AnimatePresence mode="wait" custom={direction}>
@@ -84,44 +89,29 @@ export default function TestimonialCarousel() {
             initial={prefersReducedMotion ? undefined : "enter"}
             animate="center"
             exit={prefersReducedMotion ? undefined : "exit"}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} // smooth ease out
+            style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}
           >
             <p style={{
-              color: 'var(--text-body)',
-              fontSize: 17,
-              fontStyle: 'italic',
-              lineHeight: 1.7,
-              marginBottom: 24,
-              marginTop: 24,
+              color: 'var(--text-heading)',
+              fontFamily: 'var(--font-heading)',
+              fontSize: 'clamp(24px, 4vw, 36px)',
+              lineHeight: 1.4,
+              marginBottom: 40,
+              fontWeight: 500,
             }}>
-              {t.quote}
+              &quot;{t.quote}&quot;
             </p>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-              {/* Headshot placeholder */}
-              <div style={{
-                width: 48,
-                height: 48,
-                borderRadius: '50%',
-                backgroundColor: 'var(--bg-elevated)',
-                flexShrink: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontFamily: 'var(--font-heading)',
-                fontSize: 18,
-                color: 'var(--accent)',
-              }}>
-                {t.name.charAt(0)}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
+              <div style={{ display: 'flex', gap: 4, marginBottom: 4 }}>
+                {Array.from({ length: t.rating }).map((_, i) => (
+                  <Star key={i} size={20} fill="var(--accent-gold)" color="var(--accent-gold)" />
+                ))}
               </div>
               <div>
-                <div style={{ fontWeight: 600, color: 'var(--text-heading)', fontSize: 15 }}>{t.name}</div>
-                <div style={{ color: 'var(--text-muted)', fontSize: 13 }}>{t.title}, {t.company}</div>
-              </div>
-              <div style={{ marginLeft: 'auto', display: 'flex', gap: 2 }}>
-                {Array.from({ length: t.rating }).map((_, i) => (
-                  <Star key={i} size={16} fill="var(--accent-gold)" color="var(--accent-gold)" />
-                ))}
+                <div style={{ fontWeight: 700, color: 'var(--text-heading)', fontSize: 18, marginBottom: 4 }}>{t.name}</div>
+                <div style={{ color: 'var(--text-muted)', fontSize: 15, letterSpacing: 0.5 }}>{t.title}, <span style={{ color: 'var(--text-body)' }}>{t.company}</span></div>
               </div>
             </div>
           </motion.div>
@@ -129,7 +119,7 @@ export default function TestimonialCarousel() {
       </div>
 
       {/* Navigation dots */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 24 }}>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 12, marginTop: 40 }}>
         {testimonials.map((_, i) => (
           <motion.button
             key={i}
@@ -139,16 +129,15 @@ export default function TestimonialCarousel() {
             }}
             aria-label={`Go to testimonial ${i + 1}`}
             animate={{
-              width: i === current ? 28 : 10,
+              width: i === current ? 40 : 12,
               opacity: i === current ? 1 : 0.4,
-              scale: i === current ? 1 : 0.6,
+              backgroundColor: i === current ? 'var(--accent)' : 'var(--text-muted)',
             }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
             style={{
-              height: 10,
-              borderRadius: 5,
+              height: 4,
+              borderRadius: 2,
               border: 'none',
-              backgroundColor: i === current ? 'var(--accent)' : 'var(--border-color)',
               cursor: 'pointer',
               padding: 0,
             }}

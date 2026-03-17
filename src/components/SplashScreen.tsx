@@ -10,7 +10,9 @@ export default function SplashScreen() {
     if (prefersReduced) return;
     if (sessionStorage.getItem('zirka-splash-shown')) return;
 
-    setShow(true);
+    setTimeout(() => {
+      setShow(true);
+    }, 0);
     sessionStorage.setItem('zirka-splash-shown', '1');
 
     // Hard timeout — dismiss after 2.5s no matter what

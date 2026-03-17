@@ -2,7 +2,11 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Menu, X, ChevronDown, MessageCircle, Camera, Search, Target, Bot, TrendingUp, Settings, Users, Code } from 'lucide-react';
+import { 
+  Menu, X, ChevronDown, MessageCircle, Camera, Search, 
+  Target, Bot, TrendingUp, Settings, Users, Code,
+  Phone, Video, Star, Layout, Send
+} from 'lucide-react';
 import { services } from '@/data/services';
 
 const iconMap: Record<string, React.ElementType> = {
@@ -41,6 +45,7 @@ export default function Navigation() {
   };
 
   const navLinks = [
+    { label: 'AI Products', href: '/ai-team' },
     { label: 'Results', href: '/results' },
     { label: 'About', href: '/about' },
     { label: 'Blog', href: '/blog' },
@@ -90,18 +95,10 @@ export default function Navigation() {
             }}
             aria-label="Zirka Solutions - Return to homepage"
           >
-            <span style={{
-              width: 32,
-              height: 32,
-              background: 'linear-gradient(135deg, var(--accent), var(--accent-cyan))',
-              borderRadius: 8,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: 16,
-              fontWeight: 700,
-              color: '#F8FAFC',
-            }}>Z</span>
+            <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="48" height="48" rx="12" fill="#2563EB"/>
+              <path d="M24 9L28 19.5L39 19.5L30 26.5L33.5 37L24 30L14.5 37L18 26.5L9 19.5L20 19.5Z" fill="white"/>
+            </svg>
             Zirka
           </Link>
 
@@ -156,56 +153,91 @@ export default function Navigation() {
                     border: '1px solid var(--border-color)',
                     borderRadius: 12,
                     padding: 24,
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(3, 1fr)',
-                    gap: 8,
                     boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
                   }}
                   role="menu"
                 >
-                  {services.map((service) => {
-                    const Icon = iconMap[service.icon];
-                    return (
-                      <Link
-                        key={service.slug}
-                        href={`/services/${service.slug}`}
-                        role="menuitem"
-                        style={{
-                          display: 'flex',
-                          alignItems: 'flex-start',
-                          gap: 10,
-                          padding: '10px 12px',
-                          borderRadius: 8,
-                          transition: 'background 0.2s',
-                          color: 'var(--text-body)',
-                          fontSize: 14,
-                        }}
-                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--bg-elevated)')}
-                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
-                        onClick={() => setIsDropdownOpen(false)}
-                      >
-                        {Icon && (
-                          <span style={{
-                            width: 32,
-                            height: 32,
-                            borderRadius: 6,
-                            backgroundColor: 'var(--bg-elevated)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            flexShrink: 0,
-                          }}>
-                            <Icon size={16} color="var(--accent)" />
-                          </span>
-                        )}
-                        <span>
-                          <span style={{ fontWeight: 600, color: 'var(--text-heading)', display: 'block', fontSize: 13 }}>
-                            {service.name}
-                          </span>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 24 }}>
+                    <div style={{ padding: '0 12px' }}>
+                      <span style={{ fontSize: 11, fontWeight: 800, color: 'var(--accent)', letterSpacing: 1.5, textTransform: 'uppercase', display: 'block', marginBottom: 12 }}>
+                        Marketing & Growth
+                      </span>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 4 }}>
+                        {services.filter(s => s.slug !== 'ai-automation').map((service) => {
+                          const Icon = iconMap[service.icon];
+                          return (
+                            <Link
+                              key={service.slug}
+                              href={`/services/${service.slug}`}
+                              role="menuitem"
+                              style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 10,
+                                padding: '8px 10px',
+                                borderRadius: 8,
+                                transition: 'background 0.2s',
+                                color: 'var(--text-body)',
+                                fontSize: 13,
+                              }}
+                              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--bg-elevated)')}
+                              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
+                              onClick={() => setIsDropdownOpen(false)}
+                            >
+                              {Icon && <Icon size={14} color="rgba(255,255,255,0.4)" />}
+                              <span style={{ fontWeight: 500 }}>{service.name}</span>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <div style={{ padding: '0 12px', borderTop: '1px solid var(--border-color)', paddingTop: 24 }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+                        <span style={{ fontSize: 11, fontWeight: 800, color: 'var(--accent)', letterSpacing: 1.5, textTransform: 'uppercase' }}>
+                          AI Digital Team
                         </span>
-                      </Link>
-                    );
-                  })}
+                        <Link href="/ai-team" style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 600 }} onClick={() => setIsDropdownOpen(false)}>
+                          View All →
+                        </Link>
+                      </div>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 4 }}>
+                        {[
+                          { name: 'ARIA (Chat)', href: '/aria', icon: MessageCircle },
+                          { name: 'MIA (Voice)', href: '/mia', icon: Phone },
+                          { name: 'DAYA (Video)', href: '/daya', icon: Video },
+                          { name: 'SOVA (Reviews)', href: '/sova', icon: Star, soon: true },
+                          { name: 'LUNA (Social)', href: '/luna', icon: Layout, soon: true },
+                          { name: 'NIKO (Sales)', href: '/niko', icon: Send, soon: true },
+                        ].map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            role="menuitem"
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: 10,
+                              padding: '8px 10px',
+                              borderRadius: 8,
+                              transition: 'background 0.2s',
+                              color: 'var(--text-body)',
+                              fontSize: 13,
+                              opacity: item.soon ? 0.6 : 1
+                            }}
+                            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--bg-elevated)')}
+                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
+                            onClick={() => setIsDropdownOpen(false)}
+                          >
+                            <item.icon size={14} color="var(--accent)" />
+                            <span style={{ fontWeight: 600 }}>
+                              {item.name} {item.soon && <span style={{ fontSize: 9, opacity: 0.6 }}>(Soon)</span>}
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
@@ -277,6 +309,44 @@ export default function Navigation() {
         >
           <div style={{ padding: '20px 24px' }}>
             <Link
+              href="/ai-team"
+              onClick={() => setIsMobileOpen(false)}
+              style={{
+                display: 'block',
+                fontSize: 20,
+                fontWeight: 600,
+                color: 'var(--text-heading)',
+                padding: '16px 0',
+                borderBottom: '1px solid var(--border-color)',
+              }}
+            >
+              AI Products (Team)
+            </Link>
+            <div style={{ padding: '8px 0 8px 16px', borderBottom: '1px solid var(--border-color)' }}>
+              {[
+                { name: 'ARIA — AI Chat', href: '/aria' },
+                { name: 'MIA — AI Phone', href: '/mia' },
+                { name: 'DAYA — AI Video', href: '/daya' },
+                { name: 'SOVA (Soon)', href: '/sova' },
+                { name: 'LUNA (Soon)', href: '/luna' },
+                { name: 'NIKO (Soon)', href: '/niko' },
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMobileOpen(false)}
+                  style={{
+                    display: 'block',
+                    fontSize: 15,
+                    color: 'var(--text-muted)',
+                    padding: '10px 0',
+                  }}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+            <Link
               href="/services"
               onClick={() => setIsMobileOpen(false)}
               style={{
@@ -290,8 +360,8 @@ export default function Navigation() {
             >
               Services
             </Link>
-            <div style={{ padding: '8px 0 8px 16px' }}>
-              {services.map((s) => (
+            <div style={{ padding: '8px 0 8px 16px', borderBottom: '1px solid var(--border-color)' }}>
+              {services.filter(s => s.slug !== 'ai-automation').map((s) => (
                 <Link
                   key={s.slug}
                   href={`/services/${s.slug}`}

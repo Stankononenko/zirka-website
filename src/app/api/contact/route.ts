@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 export async function POST(request: Request) {
   try {
@@ -12,50 +12,41 @@ export async function POST(request: Request) {
     }
 
     // Build email body
-    const lines = [
-      `**New ${flow === 'audit' ? 'Growth Audit Request' : flow === 'quote' ? 'Quote Request' : 'General Inquiry'}**`,
-      '',
-      `**Name:** ${name}`,
-      `**Email:** ${email}`,
-      company ? `**Company:** ${company}` : '',
-      phone ? `**Phone:** ${phone}` : '',
-      companySize ? `**Company Size:** ${companySize}` : '',
-      challenge ? `**Biggest Challenge:** ${challenge}` : '',
-      selectedServices?.length ? `**Services Interested In:** ${selectedServices.join(', ')}` : '',
-      timeline ? `**Timeline:** ${timeline}` : '',
-      budget ? `**Budget:** ${budget}` : '',
-      description ? `**Description:** ${description}` : '',
-      message ? `**Message:** ${message}` : '',
-      `**CASL Consent:** ${caslConsent ? 'Yes' : 'No'}`,
+    const htmlBody = [
+      `<h2>New ${flow === 'audit' ? 'Growth Audit Request' : flow === 'quote' ? 'Quote Request' : 'General Inquiry'}</h2>`,
+      `<p><strong>Name:</strong> ${name}</p>`,
+      `<p><strong>Email:</strong> ${email}</p>`,
+      company ? `<p><strong>Company:</strong> ${company}</p>` : '',
+      phone ? `<p><strong>Phone:</strong> ${phone}</p>` : '',
+      companySize ? `<p><strong>Company Size:</strong> ${companySize}</p>` : '',
+      challenge ? `<p><strong>Biggest Challenge:</strong> ${challenge}</p>` : '',
+      selectedServices?.length ? `<p><strong>Services Interested In:</strong> ${selectedServices.join(', ')}</p>` : '',
+      timeline ? `<p><strong>Timeline:</strong> ${timeline}</p>` : '',
+      budget ? `<p><strong>Budget:</strong> ${budget}</p>` : '',
+      description ? `<p><strong>Description:</strong> ${description}</p>` : '',
+      message ? `<p><strong>Message:</strong> ${message}</p>` : '',
+      `<p><strong>CASL Consent:</strong> ${caslConsent ? 'Yes' : 'No'}</p>`,
+      `<hr>`,
+      `<p style="color: #666; font-size: 12px;">Sent from zirka.solutions contact form</p>`,
     ].filter(Boolean).join('\n');
 
-    const htmlBody = lines.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+    const resendKey = process.env.RESEND_API_KEY;
 
-    // Check if SMTP is configured
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
+    if (resendKey && !resendKey.startsWith('re_your')) {
+      const resend = new Resend(resendKey);
 
-    if (smtpHost && smtpUser && smtpPass) {
-      const transporter = nodemailer.createTransport({
-        host: smtpHost,
-        port: Number(process.env.SMTP_PORT) || 587,
-        secure: process.env.SMTP_SECURE === 'true',
-        auth: { user: smtpUser, pass: smtpPass },
-      });
-
-      await transporter.sendMail({
-        from: `"Zirka Website" <${smtpUser}>`,
-        to: 'zirka.calgary@gmail.com',
+      await resend.emails.send({
+        from: 'Zirka Solutions <info@zirka.solutions>',
+        to: 'info@zirka.solutions',
         replyTo: email,
-        subject: `[Zirka Website] ${flow === 'audit' ? 'Growth Audit Request' : flow === 'quote' ? 'Quote Request' : 'General Inquiry'} from ${name}`,
+        subject: `[Zirka] ${flow === 'audit' ? 'Growth Audit' : flow === 'quote' ? 'Quote Request' : 'Inquiry'} from ${name}`,
         html: htmlBody,
       });
     } else {
-      // SMTP not configured — log to console for dev/staging
-      console.log('=== CONTACT FORM SUBMISSION (SMTP not configured) ===');
-      console.log(lines);
-      console.log('=====================================================');
+      // Not configured — log to console
+      console.log('=== CONTACT FORM SUBMISSION (Resend not configured) ===');
+      console.log({ name, email, company, phone, flow, selectedServices, message });
+      console.log('======================================================');
     }
 
     return NextResponse.json({ success: true });

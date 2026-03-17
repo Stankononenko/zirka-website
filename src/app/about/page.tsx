@@ -1,16 +1,17 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import AnimateOnScroll from '@/components/AnimateOnScroll';
 import CTABanner from '@/components/CTABanner';
-import { Zap, LayoutGrid, MapPin, BarChart3 } from 'lucide-react';
+import { Zap, LayoutGrid, MapPin, BarChart3, Instagram } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Zirka Solutions | Calgary Growth & Operations Consultant',
-  description: "Meet Anastasiia Sukhostavets, founder of Zirka Solutions. Operator-first growth consulting for Calgary businesses — marketing, AI automation, recruiting, and operations under one roof.",
+  title: 'About Us | Calgary Growth & Operations Partner',
+  description: "Meet Zirka Solutions — Calgary's growth & operations partner. Founded by Anastasiia Sukhostavets and Stan Kononenko. 6 AI products, 9 specialized services under one roof.",
   alternates: { canonical: 'https://zirka.solutions/about' },
   openGraph: {
-    title: 'About Zirka Solutions | Calgary Growth & Operations Consultant',
-    description: 'Meet the founder behind Zirka Solutions — operator-first growth consulting for Calgary businesses.',
+    title: 'About Us | Calgary Growth & Operations Partner',
+    description: 'Meet the founders behind Zirka Solutions — operator-first growth consulting for Calgary businesses.',
     url: 'https://zirka.solutions/about',
     type: 'website',
     images: [{ url: '/images/zirka-og.jpg', width: 1200, height: 630, alt: 'About Zirka Solutions Calgary' }],
@@ -61,11 +62,12 @@ export default function AboutPage() {
             position: 'relative',
           }}>
             <Image
-              src="/images/about-hero.jpg"
+              src="/images/about_v7.png"
               alt="Zirka Solutions team - Calgary growth and operations consulting"
               fill
               style={{ objectFit: 'cover' }}
               priority
+              quality={100}
             />
           </div>
         </div>
@@ -78,62 +80,98 @@ export default function AboutPage() {
             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 32, color: 'var(--text-heading)', marginBottom: 24 }}>Our Story</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20, color: 'var(--text-body)', fontSize: 16, lineHeight: 1.8 }}>
               <p>
-                I started Zirka after years of watching Calgary businesses struggle — not because of bad products, but because of bad systems. They&apos;d hire one agency for social media, another for SEO, a freelancer for their website, and a recruiter who didn&apos;t understand their culture. Nothing connected. Money was being wasted, and nobody was looking at the big picture.
+                We started Zirka after years of watching Calgary businesses struggle — not because of bad products, but because of bad systems. One of us comes from growth strategy and operations, the other from technology and AI development. Together, we built Zirka to be the growth partner we wished existed — one team with deep expertise across marketing, technology, and operations.
               </p>
               <p>
-                I built Zirka to be the growth partner I wished existed when I was running my own operations — one team with deep expertise across marketing, technology, and operations. When your SEO strategy informs your ads, and your ads inform your web experience, and your operations keep the whole machine running — the results multiply.
-              </p>
-              <p>
-                I&apos;m an operator first. I&apos;ve built businesses, scaled teams, and navigated the same challenges my clients face every day. I don&apos;t sell deliverables — I create <a href="/results" style={{ color: 'var(--accent)', fontWeight: 600 }}>measurable outcomes</a>.
+                When your SEO strategy informs your ads, and your ads inform your web experience, and your operations keep the whole machine running — the results multiply.
               </p>
             </div>
           </AnimateOnScroll>
         </div>
       </section>
 
-      {/* Founder */}
+      {/* Founders */}
       <section className="section-spacing">
         <div className="container-main">
           <AnimateOnScroll>
             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 32, color: 'var(--text-heading)', marginBottom: 40, textAlign: 'center' }}>
-              Meet the Founder
+              Meet the Founders
             </h2>
           </AnimateOnScroll>
-          <AnimateOnScroll delay={0.1}>
-            <div style={{
-              backgroundColor: 'var(--bg-card)',
-              border: '1px solid rgba(59, 130, 246, 0.10)',
-              borderRadius: 12,
-              padding: 32,
-              maxWidth: 520,
-              margin: '0 auto',
-              textAlign: 'center',
-            }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 24, maxWidth: 900, margin: '0 auto' }} className="founders-grid">
+            <AnimateOnScroll delay={0.1}>
               <div style={{
-                width: 96, height: 96, borderRadius: '50%',
-                overflow: 'hidden',
-                margin: '0 auto 20px',
-                border: '2px solid rgba(59, 130, 246, 0.3)',
-                position: 'relative',
+                backgroundColor: 'var(--bg-card)',
+                border: '1px solid rgba(59, 130, 246, 0.10)',
+                borderRadius: 12,
+                padding: 32,
+                textAlign: 'center',
               }}>
-                <Image
-                  src="/images/founder-avatar.png"
-                  alt="Anastasiia Sukhostavets - Founder, Zirka Solutions Calgary"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
+                <div style={{
+                  width: 96, height: 96, borderRadius: '50%',
+                  overflow: 'hidden',
+                  margin: '0 auto 20px',
+                  border: '2px solid rgba(59, 130, 246, 0.3)',
+                  position: 'relative',
+                }}>
+                  <Image
+                    src="/images/founder-avatar.png"
+                    alt="Anastasiia Sukhostavets - Co-Founder, Zirka Solutions Calgary"
+                    fill
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
+                <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 22, color: 'var(--text-heading)', marginBottom: 6 }}>
+                  Anastasiia Sukhostavets
+                </h3>
+                <p style={{ color: 'var(--accent)', fontSize: 15, fontWeight: 600, marginBottom: 12 }}>
+                  Co-Founder & Growth Partner
+                </p>
+                <a href="https://www.instagram.com/anastasiia.ca/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--text-muted)', fontSize: 13, marginBottom: 16, transition: 'color 0.2s' }}>
+                  <Instagram size={16} /> @anastasiia.ca
+                </a>
+                <p style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.7, margin: 0 }}>
+                  Growth & operations strategist specializing in marketing, recruiting, and business scaling. Drives client relationships and strategic direction at Zirka.
+                </p>
               </div>
-              <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 22, color: 'var(--text-heading)', marginBottom: 6 }}>
-                Anastasiia Sukhostavets
-              </h3>
-              <p style={{ color: 'var(--accent)', fontSize: 15, fontWeight: 600, marginBottom: 16 }}>
-                Founder & Growth Partner
-              </p>
-              <p style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.7, margin: 0 }}>
-                Growth & Operations consultant with experience in marketing, recruiting, AI automation, and business operations. Built Zirka to be the partner she wished existed.
-              </p>
-            </div>
-          </AnimateOnScroll>
+            </AnimateOnScroll>
+            <AnimateOnScroll delay={0.2}>
+              <div style={{
+                backgroundColor: 'var(--bg-card)',
+                border: '1px solid rgba(59, 130, 246, 0.10)',
+                borderRadius: 12,
+                padding: 32,
+                textAlign: 'center',
+              }}>
+                <div style={{
+                  width: 96, height: 96, borderRadius: '50%',
+                  overflow: 'hidden',
+                  margin: '0 auto 20px',
+                  border: '2px solid rgba(59, 130, 246, 0.3)',
+                  position: 'relative',
+                }}>
+                  <Image
+                    src="/images/stan-kononenko.jpg"
+                    alt="Stan Kononenko - Co-Founder, Zirka Solutions Calgary"
+                    fill
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
+                <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 22, color: 'var(--text-heading)', marginBottom: 6 }}>
+                  Stan Kononenko
+                </h3>
+                <p style={{ color: 'var(--accent)', fontSize: 15, fontWeight: 600, marginBottom: 12 }}>
+                  Co-Founder & Technical Lead
+                </p>
+                <a href="https://www.instagram.com/stass_knk/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--text-muted)', fontSize: 13, marginBottom: 16, transition: 'color 0.2s' }}>
+                  <Instagram size={16} /> @stass_knk
+                </a>
+                <p style={{ color: 'var(--text-muted)', fontSize: 15, lineHeight: 1.7, margin: 0 }}>
+                  Technical architect behind Zirka&apos;s AI products and automation systems. Builds the technology that powers MIA, ARIA, DAYA, and the entire AI ecosystem.
+                </p>
+              </div>
+            </AnimateOnScroll>
+          </div>
         </div>
       </section>
 

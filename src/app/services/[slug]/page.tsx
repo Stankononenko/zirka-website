@@ -3,6 +3,8 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import { ArrowRight, MessageCircle, Camera, Search, Target, Bot, TrendingUp, Settings, Users, Code } from 'lucide-react';
 import { services, getServiceBySlug, getRelatedServices } from '@/data/services';
+import { blogPosts } from '@/data/blogPosts';
+import { caseStudies } from '@/data/caseStudies';
 import AnimateOnScroll from '@/components/AnimateOnScroll';
 import StatCounter from '@/components/StatCounter';
 import FAQAccordion from '@/components/FAQAccordion';
@@ -12,17 +14,7 @@ const iconMap: Record<string, React.ElementType> = {
   MessageCircle, Camera, Search, Target, Bot, TrendingUp, Settings, Users, Code,
 };
 
-const heroImageMap: Record<string, string> = {
-  'social-media-marketing': '/images/svc-social-media.png',
-  'photo-video-production': '/images/svc-photo-video.png',
-  'seo': '/images/svc-seo.png',
-  'google-ads': '/images/svc-google-ads.png',
-  'ai-automation': '/images/svc-ai-automation.png',
-  'growth-consulting': '/images/svc-business-growth.png',
-  'operations-optimization': '/images/svc-operations.png',
-  'recruiting-staffing': '/images/svc-recruiting.png',
-  'web-development': '/images/svc-web-dev.png',
-};
+
 
 export async function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -33,11 +25,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const service = getServiceBySlug(slug);
   if (!service) return {};
   return {
-    title: `${service.metaTitle} | Zirka Solutions`,
+    title: service.metaTitle,
     description: service.metaDescription,
     alternates: { canonical: `https://zirka.solutions/services/${slug}` },
     openGraph: {
-      title: `${service.metaTitle} | Zirka Solutions`,
+      title: service.metaTitle,
       description: service.metaDescription,
       url: `https://zirka.solutions/services/${slug}`,
       type: 'website',
@@ -52,7 +44,6 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   if (!service) return <div className="container-main section-spacing"><h1>Service Not Found</h1></div>;
 
   const related = getRelatedServices(service.relatedSlugs);
-  const heroImage = heroImageMap[slug];
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -112,11 +103,11 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       </section>
 
       {/* Hero Image */}
-      {heroImage && (
+      {service.image && (
         <section style={{ paddingBottom: 0 }}>
           <div className="container-main">
             <div style={{ width: '100%', height: 320, borderRadius: 12, overflow: 'hidden', position: 'relative' }}>
-              <Image src={heroImage} alt={`${service.name} — Zirka Solutions`} fill style={{ objectFit: 'cover' }} priority />
+              <Image src={service.image} alt={`${service.name} — Zirka Solutions`} fill style={{ objectFit: 'cover' }} priority quality={100} />
             </div>
           </div>
         </section>
@@ -243,7 +234,102 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* Related Content (Blog & Case Studies) */}
+      {(service.relatedBlogPosts?.length || service.relatedCaseStudies?.length) && (
+        <section className="section-spacing" style={{ backgroundColor: 'var(--bg-primary)' }}>
+          <div className="container-main">
+            <AnimateOnScroll>
+              <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 32, color: 'var(--text-heading)', marginBottom: 48, textAlign: 'center' }}>
+                Learn More About {service.name}
+              </h2>
+            </AnimateOnScroll>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 32 }}>
+              {/* Related Case Studies */}
+              {service.relatedCaseStudies?.map(csId => {
+                const cs = caseStudies.find(c => c.id === csId);
+                if (!cs) return null;
+                return (
+                  <AnimateOnScroll key={cs.id}>
+                    <Link href={`/results/${cs.id}`} style={{ textDecoration: 'none' }}>
+                      <div className="card-hover" style={{ backgroundColor: 'var(--bg-card)', borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border-color)', height: '100%', display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ position: 'relative', width: '100%', height: 180 }}>
+                          <Image src={cs.image} alt={cs.title} fill style={{ objectFit: 'cover' }} />
+                          <div style={{ position: 'absolute', top: 12, left: 12, backgroundColor: 'var(--accent)', color: 'white', padding: '4px 10px', borderRadius: 4, fontSize: 11, fontWeight: 700 }}>CASE STUDY</div>
+                        </div>
+                        <div style={{ padding: 20 }}>
+                          <h3 style={{ fontSize: 18, color: 'white', marginBottom: 8, fontFamily: 'var(--font-heading)' }}>{cs.headlineMetric}</h3>
+                          <p style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.5, marginBottom: 16 }}>{cs.summary}</p>
+                          <span style={{ color: 'var(--accent)', fontSize: 14, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                            Read Results <ArrowRight size={14} />
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  </AnimateOnScroll>
+                );
+              })}
+
+              {/* Related Blog Posts */}
+              {service.relatedBlogPosts?.map(postSlug => {
+                const post = blogPosts.find(p => p.slug === postSlug);
+                if (!post) return null;
+                return (
+                  <AnimateOnScroll key={post.slug}>
+                    <Link href={`/blog/${post.slug}`} style={{ textDecoration: 'none' }}>
+                      <div className="card-hover" style={{ backgroundColor: 'var(--bg-card)', borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border-color)', height: '100%', display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ position: 'relative', width: '100%', height: 180 }}>
+                          <Image src={post.image} alt={post.title} fill style={{ objectFit: 'cover' }} />
+                          <div style={{ position: 'absolute', top: 12, left: 12, backgroundColor: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(4px)', color: 'white', padding: '4px 10px', borderRadius: 4, fontSize: 11, fontWeight: 700 }}>ARTICLE</div>
+                        </div>
+                        <div style={{ padding: 20 }}>
+                          <h3 style={{ fontSize: 18, color: 'white', marginBottom: 8, fontFamily: 'var(--font-heading)' }}>{post.title}</h3>
+                          <p style={{ color: 'var(--text-muted)', fontSize: 14, lineHeight: 1.5, marginBottom: 16 }}>{post.excerpt}</p>
+                          <span style={{ color: 'var(--accent)', fontSize: 14, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                            Read Article <ArrowRight size={14} />
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  </AnimateOnScroll>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* MIA Banner for AI Automation */}
+      {service.slug === 'ai-automation' && (
+        <section className="section-spacing" style={{ backgroundColor: 'rgba(6, 182, 212, 0.05)', borderTop: '1px solid rgba(6, 182, 212, 0.1)', borderBottom: '1px solid rgba(6, 182, 212, 0.1)' }}>
+          <div className="container-main" style={{ textAlign: 'center' }}>
+            <AnimateOnScroll>
+              <div style={{ display: 'inline-block', backgroundColor: 'rgba(6, 182, 212, 0.1)', color: 'var(--accent)', padding: '6px 16px', borderRadius: 100, fontSize: 12, fontWeight: 700, marginBottom: 24, letterSpacing: 1 }}>OUR FEATURED SOLUTION</div>
+              <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(32px, 5vw, 48px)', color: 'white', marginBottom: 24 }}>Meet MIA: Our AI Voice Receptionist</h2>
+              <p style={{ color: 'var(--text-muted)', fontSize: 18, maxWidth: 800, margin: '0 auto 40px', lineHeight: 1.6 }}>
+                Never miss a call again. Our proprietary AI, MIA, answers every call, books appointments, and follows up with leads 24/7/365.
+              </p>
+              <Link href="/mia" className="btn-primary" style={{ padding: '16px 40px', fontSize: 18 }}>Learn About MIA</Link>
+            </AnimateOnScroll>
+          </div>
+        </section>
+      )}
+
+      {/* DAYA Banner for Video & Automation */}
+      {(service.slug === 'ai-automation' || service.slug === 'photo-video-production') && (
+        <section className="section-spacing" style={{ backgroundColor: 'rgba(168, 85, 247, 0.05)', borderTop: '1px solid rgba(168, 85, 247, 0.1)', borderBottom: '1px solid rgba(168, 85, 247, 0.1)' }}>
+          <div className="container-main" style={{ textAlign: 'center' }}>
+            <AnimateOnScroll>
+              <div style={{ display: 'inline-block', backgroundColor: 'rgba(168, 85, 247, 0.1)', color: '#A855F7', padding: '6px 16px', borderRadius: 100, fontSize: 12, fontWeight: 700, marginBottom: 24, letterSpacing: 1 }}>NEW PRODUCT</div>
+              <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(32px, 5vw, 48px)', color: 'white', marginBottom: 24 }}>Meet DAYA: Your AI Digital Twin</h2>
+              <p style={{ color: 'var(--text-muted)', fontSize: 18, maxWidth: 800, margin: '0 auto 40px', lineHeight: 1.6 }}>
+                Unlimited professional video content without ever stepping in front of a camera again. We create your AI avatar and produce your content on demand.
+              </p>
+              <Link href="/daya" className="btn-primary" style={{ padding: '16px 40px', fontSize: 18, backgroundColor: '#A855F7', borderColor: '#A855F7' }}>Explore DAYA AI Video</Link>
+            </AnimateOnScroll>
+          </div>
+        </section>
+      )}
       <section className="section-spacing">
         <div className="container-main" style={{ maxWidth: 720, margin: '0 auto' }}>
           <AnimateOnScroll>
