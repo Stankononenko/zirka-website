@@ -21,16 +21,41 @@ export default function MiaClient() {
     setActiveFaq(activeFaq === index ? null : index);
   };
 
-  const handleDemoCall = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!phoneNumber) return;
-    setDemoState('calling');
-    setTimeout(() => setDemoState('connected'), 2000);
-    setTimeout(() => setDemoState('completed'), 7000);
-    setTimeout(() => {
-      setDemoState('idle');
-      setPhoneNumber('');
-    }, 10000);
+  const handleDemoCall = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!phoneNumber) return;
+
+        let formattedNumber = phoneNumber.replace(/[^0-9+]/g, '');
+        if (!formattedNumber.startsWith('+')) {
+                if (!formattedNumber.startsWith('1')) {
+                          formattedNumber = '+1' + formattedNumber;
+                } else {
+                          formattedNumber = '+' + formattedNumber;
+                }
+        }
+
+        setDemoState('calling');
+
+        try {
+                const response = await fetch('https://stanislavkononenko.app.n8n.cloud/webhook/mia-demo-call', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ phoneNumber: formattedNumber }),
+                });
+
+                if (response.ok) {
+                          setTimeout(() => setDemoState('connected'), 5000);
+                          setTimeout(() => setDemoState('completed'), 30000);
+                          setTimeout(() => {
+                                      setDemoState('idle');
+                                      setPhoneNumber('');
+                          }, 35000);
+                } else {
+                          setDemoState('idle');
+                }
+        } catch {
+                setDemoState('idle');
+        }
   };
 
   return (
