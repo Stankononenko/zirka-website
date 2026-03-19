@@ -82,15 +82,33 @@ export default function AiProductsSection() {
   const [demoSubmitted, setDemoSubmitted] = useState(false);
   const [isPlayingDemo, setIsPlayingDemo] = useState(false);
 
-  const handleDemoCall = (e: React.FormEvent) => {
+    const handleDemoCall = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!demoPhone) return;
+
+    let formattedNumber = demoPhone.replace(/[^0-9+]/g, '');
+    if (!formattedNumber.startsWith('+')) {
+      formattedNumber = formattedNumber.startsWith('1') ? '+' + formattedNumber : '+1' + formattedNumber;
+    }
+
     setDemoSubmitted(true);
+
+    try {
+      await fetch('https://stanislavkononenko.app.n8n.cloud/webhook/mia-demo-call', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phoneNumber: formattedNumber }),
+      });
+    } catch {
+      // Call initiated regardless
+    }
+
     setTimeout(() => {
       setDemoSubmitted(false);
       setDemoPhone('');
-    }, 6000);
+    }, 15000);
   };
+
 
   const handlePlayDemo = () => {
     setIsPlayingDemo(true);
