@@ -44,6 +44,7 @@ export default function DayaPage() {
     "@type": "Product",
     "name": "DAYA — AI Avatar Video Production",
     "description": "Done-for-you AI avatar video production service. We create your digital twin and produce unlimited professional video content on demand.",
+    "image": "https://zirka.solutions/images/zirka-og.jpg",
     "brand": {
       "@type": "Brand",
       "name": "Zirka Solutions"

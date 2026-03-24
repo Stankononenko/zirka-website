@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
-  description: 'Terms of Service for Zirka Solutions. Professional marketing & operations services in Calgary.',
+  description: 'Terms of Service for Zirka Solutions. Read the terms governing our marketing, AI automation, and operations consulting services for Calgary businesses.',
 };
 
 export default function TermsPage() {

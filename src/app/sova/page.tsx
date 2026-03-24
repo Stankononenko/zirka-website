@@ -13,6 +13,7 @@ export default function SovaPage() {
     "@type": "Product",
     "name": "SOVA — AI Reputation Manager",
     "description": "5-Star Reviews on Autopilot. AI-powered reputation management for local businesses.",
+    "image": "https://zirka.solutions/images/zirka-og.jpg",
     "brand": {
       "@type": "Brand",
       "name": "Zirka Solutions"

@@ -13,6 +13,7 @@ export default function LunaPage() {
     "@type": "Product",
     "name": "LUNA — AI Social Media Manager",
     "description": "Your Social Media, On Autopilot. AI-powered content creation and posting for Calgary businesses.",
+    "image": "https://zirka.solutions/images/zirka-og.jpg",
     "brand": {
       "@type": "Brand",
       "name": "Zirka Solutions"

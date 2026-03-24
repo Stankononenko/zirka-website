@@ -13,6 +13,7 @@ export default function NikoPage() {
     "@type": "Product",
     "name": "NIKO — AI Sales Outreach Agent",
     "description": "New Clients Found and Contacted For You. AI-powered lead generation and outreach for Calgary businesses.",
+    "image": "https://zirka.solutions/images/zirka-og.jpg",
     "brand": {
       "@type": "Brand",
       "name": "Zirka Solutions"

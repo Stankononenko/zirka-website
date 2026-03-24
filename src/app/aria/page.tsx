@@ -51,6 +51,7 @@ export default function AriaPage() {
     "@type": "Product",
     "name": "ARIA — AI Chat Agent",
     "description": "24/7 AI chat agent for websites. Captures leads, answers questions, and books appointments automatically.",
+    "image": "https://zirka.solutions/images/zirka-og.jpg",
     "brand": {
       "@type": "Brand",
       "name": "Zirka Solutions"

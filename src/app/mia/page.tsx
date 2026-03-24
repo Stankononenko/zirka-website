@@ -51,6 +51,7 @@ export default function MiaLandingPage() {
     "@type": "Product",
     "name": "MIA AI Voice Agent",
     "description": "24/7 AI Receptionist for Calgary businesses. Answers calls, books appointments, and follows up with leads.",
+    "image": "https://zirka.solutions/images/zirka-og.jpg",
     "brand": {
       "@type": "Brand",
       "name": "Zirka Solutions"
