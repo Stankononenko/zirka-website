@@ -78,6 +78,7 @@ export default function RootLayout({
             gtag('config', 'G-NRBY82SMRK');
           `}
         </Script>
+        <meta name="theme-color" content="#2563EB" />
         <link rel="preload" href="/fonts/Inter-Regular.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/SpaceGrotesk-Bold.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
         <script
