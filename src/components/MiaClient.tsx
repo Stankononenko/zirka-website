@@ -2,16 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { 
-  Phone, Calendar, MessageSquare, Smartphone, Globe, 
-  BarChart, ArrowRight, Mic, Loader2, Zap
+import {
+  Phone, Calendar, MessageSquare, Smartphone, Globe,
+  BarChart, ArrowRight, Zap
 } from 'lucide-react';
 import AnimateOnScroll from '@/components/AnimateOnScroll';
 
 export default function MiaClient() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [demoState, setDemoState] = useState<'idle' | 'calling' | 'connected' | 'completed'>('idle');
 
   useEffect(() => {
     // Window is available, handle any client-side initialization if needed
@@ -21,42 +19,6 @@ export default function MiaClient() {
     setActiveFaq(activeFaq === index ? null : index);
   };
 
-  const handleDemoCall = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!phoneNumber) return;
-
-        let formattedNumber = phoneNumber.replace(/[^0-9+]/g, '');
-        if (!formattedNumber.startsWith('+')) {
-                if (!formattedNumber.startsWith('1')) {
-                          formattedNumber = '+1' + formattedNumber;
-                } else {
-                          formattedNumber = '+' + formattedNumber;
-                }
-        }
-
-        setDemoState('calling');
-
-        try {
-                const response = await fetch('https://stanislavkononenko.app.n8n.cloud/webhook/mia-demo-call', {
-                          method: 'POST',
-                          headers: { 'Content-Type': 'application/json' },
-                          body: JSON.stringify({ phoneNumber: formattedNumber }),
-                });
-
-                if (response.ok) {
-                          setTimeout(() => setDemoState('connected'), 5000);
-                          setTimeout(() => setDemoState('completed'), 30000);
-                          setTimeout(() => {
-                                      setDemoState('idle');
-                                      setPhoneNumber('');
-                          }, 35000);
-                } else {
-                          setDemoState('idle');
-                }
-        } catch {
-                setDemoState('idle');
-        }
-  };
 
   return (
     <div style={{ backgroundColor: '#030712', color: 'white', minHeight: '100vh', position: 'relative' }}>
@@ -94,9 +56,6 @@ export default function MiaClient() {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, justifyContent: 'center', marginBottom: 32 }}>
               <Link href="/contact" className="btn-primary cta-pulse" style={{ padding: '16px 32px', fontSize: 18 }}>
                 Start My Free 7-Day Trial
-              </Link>
-              <Link href="#demo" className="btn-secondary" style={{ padding: '16px 32px', fontSize: 18 }}>
-                Hear MIA in Action <ArrowRight size={18} style={{ marginLeft: 8 }} />
               </Link>
             </div>
 
@@ -226,88 +185,6 @@ export default function MiaClient() {
         </div>
       </section>
 
-      {/* Section 4: Live Demo */}
-      <section id="demo" className="section-spacing" style={{ 
-        background: 'linear-gradient(to bottom, transparent, rgba(6, 182, 212, 0.05), transparent)' 
-      }}>
-        <div className="container-main">
-          <AnimateOnScroll>
-            <div style={{ textAlign: 'center', marginBottom: 56 }}>
-              <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontFamily: 'var(--font-heading)', marginBottom: 16 }}>
-                Hear MIA in Action — Right Now
-              </h2>
-              <p style={{ color: 'var(--text-muted)', fontSize: 18, maxWidth: 700, margin: '0 auto' }}>
-                Input your phone number and MIA will &quot;call&quot; you to demonstrate her capabilities.
-              </p>
-            </div>
-
-            <div style={{ 
-              maxWidth: 600, margin: '0 auto', padding: '48px 32px', borderRadius: 32,
-              backgroundColor: 'rgba(3, 7, 18, 0.8)', border: '1px solid rgba(6, 182, 212, 0.3)',
-              boxShadow: '0 0 60px rgba(6, 182, 212, 0.1)', textAlign: 'center',
-              position: 'relative', overflow: 'hidden'
-            }}>
-              {demoState === 'idle' && (
-                <form onSubmit={handleDemoCall} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-                  <div style={{ position: 'relative' }}>
-                    <Phone style={{ position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)', color: 'var(--accent)' }} size={20} />
-                    <input 
-                      type="tel" 
-                      placeholder="+1 (403) XXX-XXXX" 
-                      value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
-                      required
-                      style={{
-                        width: '100%', padding: '16px 16px 16px 48px', borderRadius: 12,
-                        backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)',
-                        color: 'white', fontSize: 18, outline: 'none', transition: 'all 0.3s'
-                      }}
-                      className="demo-input"
-                    />
-                  </div>
-                  <button type="submit" className="btn-primary" style={{ padding: '16px', fontSize: 18, fontWeight: 700 }}>
-                    Call Me Now
-                  </button>
-                  <p style={{ color: 'var(--text-muted)', fontSize: 12 }}>
-                    * In this demo mode, MIA will simulate a call experience in your browser.
-                  </p>
-                </form>
-              )}
-
-              {demoState !== 'idle' && (
-                <div style={{ padding: '20px 0', animation: 'fadeIn 0.5s ease' }}>
-                  <div style={{ 
-                    width: 80, height: 80, borderRadius: '50%', backgroundColor: 'var(--accent)',
-                    margin: '0 auto 24px', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    position: 'relative'
-                  }}>
-                    <div className="ping-animation" style={{
-                      position: 'absolute', width: '100%', height: '100%', borderRadius: '50%',
-                      border: '2px solid var(--accent)', opacity: 0.5
-                    }} />
-                    {demoState === 'calling' ? <Loader2 className="animate-spin" size={32} /> : <Mic size={32} />}
-                  </div>
-                  
-                  <h3 style={{ fontSize: 24, marginBottom: 12 }}>
-                    {demoState === 'calling' ? 'Calling...' : demoState === 'connected' ? 'Connected' : 'Call Completed'}
-                  </h3>
-                  
-                  <div style={{ 
-                    backgroundColor: 'rgba(255,255,255,0.03)', padding: 20, borderRadius: 16, 
-                    textAlign: 'left', minHeight: 120, display: 'flex', alignItems: 'center'
-                  }}>
-                    <p style={{ color: 'var(--text-muted)', fontSize: 16, fontStyle: 'italic', margin: 0 }}>
-                      {demoState === 'calling' && "Initiating secure connection to MIA..."}
-                      {demoState === 'connected' && "MIA: 'Hello! I'm MIA, your AI business assistant. I'm currently demonstrating how I can answer calls and book appointments for your Calgary business...'"}
-                      {demoState === 'completed' && "MIA: 'Thank you for trying this demo! I've sent a summary of our call to your system. Have a great day!'"}
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
-          </AnimateOnScroll>
-        </div>
-      </section>
 
       {/* Section 5: Comparison */}
       <section className="section-spacing">

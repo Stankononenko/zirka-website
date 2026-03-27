@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { 
-  MessageSquare, Phone, Star, Video, Send, Layout, 
-  CheckCircle, ArrowRight, Mic, Activity, ShieldCheck, PlayCircle
+import {
+  MessageSquare, Phone, Star, Video, Send, Layout,
+  CheckCircle, ArrowRight, Mic, Activity, ShieldCheck
 } from 'lucide-react';
 import AnimateOnScroll from '@/components/AnimateOnScroll';
 
@@ -78,37 +78,7 @@ const products = [
 ];
 
 export default function AiProductsSection() {
-  const [demoPhone, setDemoPhone] = useState('');
-  const [demoSubmitted, setDemoSubmitted] = useState(false);
   const [isPlayingDemo, setIsPlayingDemo] = useState(false);
-
-    const handleDemoCall = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!demoPhone) return;
-
-    let formattedNumber = demoPhone.replace(/[^0-9+]/g, '');
-    if (!formattedNumber.startsWith('+')) {
-      formattedNumber = formattedNumber.startsWith('1') ? '+' + formattedNumber : '+1' + formattedNumber;
-    }
-
-    setDemoSubmitted(true);
-
-    try {
-      await fetch('https://stanislavkononenko.app.n8n.cloud/webhook/mia-demo-call', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phoneNumber: formattedNumber }),
-      });
-    } catch {
-      // Call initiated regardless
-    }
-
-    setTimeout(() => {
-      setDemoSubmitted(false);
-      setDemoPhone('');
-    }, 15000);
-  };
-
 
   const handlePlayDemo = () => {
     setIsPlayingDemo(true);
@@ -289,43 +259,6 @@ export default function AiProductsSection() {
               <p style={{ color: 'var(--text-muted)', fontSize: 14, textAlign: 'center', marginTop: 8 }}>Hear a live recording of MIA answering a call.</p>
             </div>
 
-            {/* Form */}
-            <div>
-              <h3 style={{ fontSize: 24, fontWeight: 800, marginBottom: 16 }}>Experience the Live Voice Demo</h3>
-              <p style={{ color: 'var(--text-muted)', fontSize: 15, marginBottom: 24, lineHeight: 1.6 }}>
-                Enter your phone number and MIA (our AI Phone Receptionist) will call you right now for a live conversation.
-              </p>
-              
-              <div style={{
-                backgroundColor: 'rgba(59, 130, 246, 0.05)', border: '1px solid rgba(59, 130, 246, 0.2)',
-                borderRadius: 16, padding: 24, position: 'relative'
-              }}>
-                {demoSubmitted ? (
-                  <div style={{ textAlign: 'center', padding: '10px 0' }}>
-                    <CheckCircle size={40} color="#10B981" style={{ margin: '0 auto 12px' }} />
-                    <h4 style={{ fontSize: 18, color: 'white' }}>MIA is calling...</h4>
-                  </div>
-                ) : (
-                  <form onSubmit={handleDemoCall} style={{ display: 'flex', gap: 10 }}>
-                    <input 
-                      type="tel" 
-                      required
-                      value={demoPhone}
-                      onChange={(e) => setDemoPhone(e.target.value)}
-                      placeholder="(403) 555-0199"
-                      style={{
-                        flex: 1, padding: '12px 16px', borderRadius: 10,
-                        backgroundColor: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.1)',
-                        color: 'white', fontSize: 15, outline: 'none'
-                      }}
-                    />
-                    <button type="submit" className="btn-primary" style={{ padding: '12px 20px', whiteSpace: 'nowrap' }}>
-                      Call Me
-                    </button>
-                  </form>
-                )}
-              </div>
-            </div>
           </div>
         </AnimateOnScroll>
         

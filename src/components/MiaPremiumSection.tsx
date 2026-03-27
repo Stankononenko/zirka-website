@@ -2,23 +2,11 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Phone, CheckCircle, Mic, Activity, ShieldCheck, PlayCircle } from 'lucide-react';
+import { Mic, Activity, ShieldCheck } from 'lucide-react';
 import AnimateOnScroll from '@/components/AnimateOnScroll';
 
 export default function MiaPremiumSection() {
-  const [demoPhone, setDemoPhone] = useState('');
-  const [demoSubmitted, setDemoSubmitted] = useState(false);
   const [isPlayingDemo, setIsPlayingDemo] = useState(false);
-
-  const handleDemoCall = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!demoPhone) return;
-    setDemoSubmitted(true);
-    setTimeout(() => {
-      setDemoSubmitted(false);
-      setDemoPhone('');
-    }, 6000);
-  };
 
   const handlePlayDemo = () => {
     setIsPlayingDemo(true);
@@ -171,47 +159,6 @@ export default function MiaPremiumSection() {
                 ))}
               </ul>
 
-              {/* Demo Call CTA */}
-              <div style={{
-                backgroundColor: 'rgba(59, 130, 246, 0.05)', border: '1px solid rgba(59, 130, 246, 0.2)',
-                borderRadius: 16, padding: 24, position: 'relative', overflow: 'hidden'
-              }}>
-                <div style={{ position: 'absolute', top: 0, left: 0, width: 4, height: '100%', backgroundColor: 'var(--accent)' }} />
-                
-                {demoSubmitted ? (
-                  <div style={{ textAlign: 'center', animation: 'fadeInScale 0.5s ease', padding: '20px 0' }}>
-                    <CheckCircle size={48} color="var(--color-success)" style={{ margin: '0 auto 16px' }} />
-                    <h4 style={{ fontSize: 18, color: 'white', marginBottom: 8 }}>Mia is calling you!</h4>
-                    <p style={{ color: 'var(--text-muted)', fontSize: 14 }}>Answer your phone to experience the live voice agent.</p>
-                  </div>
-                ) : (
-                  <>
-                     <h4 style={{ fontSize: 18, color: 'white', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <Phone size={18} color="var(--accent)" /> Request a Live Voice Demo
-                    </h4>
-                    <p style={{ color: 'var(--text-muted)', fontSize: 14, marginBottom: 16 }}>
-                      Enter your number and Mia will call you right now so you can converse with her natively on your phone.
-                    </p>
-                    <form onSubmit={handleDemoCall} style={{ display: 'flex', gap: 8 }}>
-                      <input 
-                        type="tel" 
-                        required
-                        value={demoPhone}
-                        onChange={(e) => setDemoPhone(e.target.value)}
-                        placeholder="(403) 555-0199"
-                        style={{
-                          flex: 1, padding: '12px 16px', borderRadius: 8,
-                          backgroundColor: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.1)',
-                          color: 'white', fontSize: 15, outline: 'none'
-                        }}
-                      />
-                      <button type="submit" className="btn-primary" style={{ padding: '12px 20px', whiteSpace: 'nowrap' }}>
-                        Call Me
-                      </button>
-                    </form>
-                  </>
-                )}
-              </div>
             </div>
           </AnimateOnScroll>
         </div>
