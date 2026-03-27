@@ -1,10 +1,9 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import {
   MessageSquare, Phone, Star, Video, Send, Layout,
-  CheckCircle, ArrowRight, Mic, Activity, ShieldCheck
+  CheckCircle, ArrowRight, Mic, ShieldCheck
 } from 'lucide-react';
 import AnimateOnScroll from '@/components/AnimateOnScroll';
 
@@ -78,12 +77,6 @@ const products = [
 ];
 
 export default function AiProductsSection() {
-  const [isPlayingDemo, setIsPlayingDemo] = useState(false);
-
-  const handlePlayDemo = () => {
-    setIsPlayingDemo(true);
-    setTimeout(() => setIsPlayingDemo(false), 5000);
-  };
 
   return (
     <section className="section-spacing" style={{ backgroundColor: '#030712', position: 'relative', overflow: 'hidden' }}>
@@ -236,31 +229,6 @@ export default function AiProductsSection() {
           </div>
         </AnimateOnScroll>
 
-        {/* MIA Voice Demo Integration */}
-        <AnimateOnScroll>
-          <div style={{ 
-            display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
-            gap: 64, alignItems: 'center', padding: '64px 40px', borderRadius: 32,
-            backgroundColor: 'rgba(255,255,255,0.01)', border: '1px solid rgba(255,255,255,0.05)'
-          }}>
-            {/* Visualizer */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div style={{
-                width: 140, height: 140, borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, rgba(59, 130, 246, 0.1) 60%, transparent 100%)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                boxShadow: isPlayingDemo ? '0 0 60px rgba(6, 182, 212, 0.4)' : '0 0 30px rgba(59, 130, 246, 0.1)',
-                animation: isPlayingDemo ? 'pulseOrb 1s infinite alternate' : 'pulseOrb 3s infinite alternate',
-                transition: 'all 0.5s ease', cursor: 'pointer', marginBottom: 24
-              }} onClick={handlePlayDemo}>
-                 <Activity size={isPlayingDemo ? 72 : 56} color={isPlayingDemo ? '#06B6D4' : 'rgba(255,255,255,0.6)'} />
-              </div>
-              <h4 style={{ color: 'white', fontSize: 20, fontWeight: 700 }}>{isPlayingDemo ? 'Speaking...' : 'Click for Audio Demo'}</h4>
-              <p style={{ color: 'var(--text-muted)', fontSize: 14, textAlign: 'center', marginTop: 8 }}>Hear a live recording of MIA answering a call.</p>
-            </div>
-
-          </div>
-        </AnimateOnScroll>
         
         <div style={{ textAlign: 'center', marginTop: 64 }}>
           <Link href="/ai-team" className="btn-secondary" style={{ padding: '12px 32px' }}>
@@ -271,10 +239,6 @@ export default function AiProductsSection() {
 
       <style dangerouslySetInnerHTML={{ __html: `
         .hover-card:hover { transform: translateY(-8px); border-color: rgba(6, 182, 212, 0.4) !important; }
-        @keyframes pulseOrb {
-          0% { transform: scale(0.95); opacity: 0.8; }
-          100% { transform: scale(1.05); opacity: 1; }
-        }
       `}} />
     </section>
   );
